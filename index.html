@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hana Salah | Data analytics, automation and ML</title>
+<meta name="description" content="Hana Salah builds KPI dashboards, data pipelines, Python automations and ML models for businesses. Performance Senior Analyst, e&amp; Business Egypt. Open to freelance projects.">
+<meta property="og:title" content="Hana Salah | Data analytics, automation and ML">
+<meta property="og:description" content="KPI dashboards, data pipelines, Python automation and machine learning.">
+<meta property="og:type" content="website">
+<!-- TODO(Hana): when the final site URL is known, add absolute tags here:
+     <meta property="og:url" content="https://YOUR-DOMAIN/">  and  <meta property="og:image" content="https://YOUR-DOMAIN/assets/og-image.png">
+     (assets/og-image.png already exists; social previews need the absolute URL). Left out on purpose until then. -->
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face { font-family: 'Manrope'; font-style: normal; font-weight: 400 800; font-display: swap; src: url(assets/fonts/manrope-latin.woff2) format('woff2'); }
+@font-face { font-family: 'Instrument Serif'; font-style: normal; font-weight: 400; font-display: swap; src: url(assets/fonts/instrument-serif-regular.woff2) format('woff2'); }
+@font-face { font-family: 'Instrument Serif'; font-style: italic; font-weight: 400; font-display: swap; src: url(assets/fonts/instrument-serif-italic.woff2) format('woff2'); }
+</style>
+<script src="./site-config.js"></script>
+<script src="./resources.js"></script>
+<script src="./site-utils.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<noscript>
+<div style="font-family: system-ui, sans-serif; max-width: 640px; margin: 48px auto; padding: 0 20px; line-height: 1.6;">
+<h1>Hana Salah</h1>
+<p>Data analytics, automation and machine learning. This site needs JavaScript to display my work.</p>
+<p>Email me at <a href="mailto:hana.salah.m.nasr@gmail.com">hana.salah.m.nasr@gmail.com</a>.</p>
+</div>
+</noscript>
+<x-dc>
+<helmet>
+<style>
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition-duration: 0.01ms !important; } }
+body { margin: 0; background: #FFFFFF; color: #111111; font-family: 'Manrope', system-ui, sans-serif; text-wrap: pretty; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+a { color: #6E1535; }
+a:hover { color: #3D0B20; }
+::selection { background: #6E1535; color: #FFFFFF; }
+:focus-visible { outline: 2px solid #B66A82; outline-offset: 3px; }
+select option { background: #191919; color: #FFFFFF; }
+textarea::placeholder { color: #9A9396; opacity: 1; } /* 5.85:1 on #191919 */
+img { max-width: 100%; display: block; }
+</style>
+</helmet>
+
+<a href="#top" style="position: absolute; left: -9999px; top: 8px; z-index: 50; padding: 10px 14px; background: #111111; color: #FFFFFF;" style-focus="left: 8px;">Skip to content</a>
+
+<header style="position: sticky; top: 0; z-index: 30; background: rgba(255,255,255,0.96); backdrop-filter: blur(10px); border-bottom: 1px solid #EEE7E8;">
+  <nav aria-label="Primary" style="max-width: 1280px; margin: 0 auto; padding: 12px clamp(20px, 5vw, 64px); display: flex; align-items: center; gap: 12px 32px; min-height: 48px;">
+    <a href="#top" style="margin-right: auto; display: flex; align-items: baseline; gap: 8px; text-decoration: none; color: #111111; min-height: 44px; box-sizing: border-box; align-items: center;">
+      <span style="font-weight: 800; font-size: 19px; letter-spacing: -0.02em;">Hana Salah</span>
+      <span aria-hidden="true" style="width: 7px; height: 7px; background: #6E1535; border-radius: 50%;"></span>
+    </a>
+    <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+      <div style="display: flex; gap: 26px; font-size: 14.5px; font-weight: 500;">
+        <sc-for list="{{ navLinks }}" as="l" hint-placeholder-count="5">
+          <a href="{{ l.href }}" style="color: #111111; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px; padding: 0; background-image: linear-gradient(#6E1535, #6E1535); background-repeat: no-repeat; background-position: 0 calc(50% + 14px); background-size: 0% 1.5px; transition: background-size 300ms ease, color 300ms ease;" style-hover="background-size: 100% 1.5px; color: #6E1535;">{{ l.label }}</a>
+        </sc-for>
+      </div>
+      <a href="#contact" style="white-space: nowrap; flex: none; display: inline-flex; align-items: center; gap: 10px; padding: 12px 18px; min-height: 44px; box-sizing: border-box; background: #6E1535; color: #FFFFFF; text-decoration: none; font-size: 14px; font-weight: 600; transition: background 250ms ease, gap 250ms ease;" style-hover="background: #111111; color: #FFFFFF; gap: 14px;">Discuss a project <span aria-hidden="true">→</span></a>
+    </sc-if>
+    <sc-if value="{{ narrow }}" hint-placeholder-val="{{ false }}">
+      <button type="button" aria-expanded="{{ menuExpanded }}" aria-controls="mobile-menu" aria-label="{{ menuLabel }}" ref="{{ toggleRef }}" onClick="{{ toggleMenu }}" style="all: unset; cursor: pointer; width: 48px; height: 48px; display: grid; place-items: center; margin-right: -12px;">
+        <span aria-hidden="true" style="display: flex; flex-direction: column; gap: 5px; width: 22px;">
+          <span style="height: 2px; background: #111111; transform: {{ bar1 }}; transition: transform 250ms ease;"></span>
+          <span style="height: 2px; background: #111111; opacity: {{ bar2 }}; transition: opacity 200ms ease;"></span>
+          <span style="height: 2px; background: #111111; transform: {{ bar3 }}; transition: transform 250ms ease;"></span>
+        </span>
+      </button>
+    </sc-if>
+  </nav>
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div id="mobile-menu" ref="{{ menuRef }}" onKeyDown="{{ menuKey }}" onBlur="{{ menuBlur }}" style="position: absolute; left: 0; right: 0; top: 100%; background: #FFFFFF; border-bottom: 1px solid #E6DEDF; box-shadow: 0 18px 40px rgba(17,17,17,0.08); padding: 8px 20px 24px; display: flex; flex-direction: column; max-height: calc(100vh - 72px); overflow-y: auto; box-sizing: border-box;">
+      <sc-for list="{{ navLinks }}" as="l" hint-placeholder-count="5">
+        <a href="{{ l.href }}" onClick="{{ closeAndFocus }}" style="display: block; padding: 14px 0; border-bottom: 1px solid #EEE7E8; color: #111111; text-decoration: none; font-size: 19px; font-weight: 600; letter-spacing: -0.01em;">{{ l.label }}</a>
+      </sc-for>
+      <a href="#contact" onClick="{{ closeAndFocus }}" style="margin-top: 18px; display: flex; justify-content: center; align-items: center; gap: 10px; padding: 16px 20px; background: #6E1535; color: #FFFFFF; text-decoration: none; font-size: 16px; font-weight: 700;">Discuss a project <span aria-hidden="true">→</span></a>
+    </div>
+  </sc-if>
+</header>
+
+<main id="top">
+  <section data-screen-label="01 Hero" style="background: #6E1535; color: #FFFFFF; position: relative; overflow: hidden;">
+    <div aria-hidden="true" style="position: absolute; right: -12vw; top: -20vw; width: 60vw; height: 60vw; border-radius: 50%; background: radial-gradient(circle, rgba(61,11,32,0.55) 0%, rgba(61,11,32,0) 70%); pointer-events: none;"></div>
+    <div style="position: relative; max-width: 1280px; margin: 0 auto; padding: clamp(48px, 9vw, 128px) clamp(20px, 5vw, 64px) clamp(40px, 5vw, 64px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: clamp(48px, 7vw, 104px); align-items: center;">
+      <div style="display: flex; flex-direction: column; gap: clamp(20px, 2.4vw, 28px); min-width: 0;">
+        <span data-reveal="" style="font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #F2C9D6;">Data · Analytics · Automation · AI</span>
+        <h1 data-reveal="" style="margin: 0; font-weight: 700; font-size: clamp(38px, 6.2vw, 90px); line-height: 1; letter-spacing: -0.04em; text-wrap: balance; overflow-wrap: break-word;">I clean business data and turn it into <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; letter-spacing: -0.01em; color: #F2C9D6;">dashboards, reports</span> and predictions.</h1>
+        <p data-reveal="" style="margin: 0; max-width: 50ch; font-size: clamp(16.5px, 1.35vw, 18.5px); line-height: 1.6; color: rgba(255,255,255,0.88);">I build dashboards, data pipelines and Python automations for teams with messy data.</p>
+        <div data-reveal="" style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center;">
+          <a href="#contact" style="white-space: nowrap; flex: none; display: inline-flex; align-items: center; gap: 12px; padding: 16px 24px; background: #FFFFFF; color: #6E1535; text-decoration: none; font-size: 15.5px; font-weight: 700; transition: gap 250ms ease, background 250ms ease;" style-hover="gap: 18px; background: #111111; color: #FFFFFF;">Discuss a project <span aria-hidden="true">→</span></a>
+          <a href="#case-studies" style="white-space: nowrap; flex: none; display: inline-flex; align-items: center; padding: 15px 23px; border: 1px solid rgba(255,255,255,0.6); color: #FFFFFF; text-decoration: none; font-size: 15.5px; font-weight: 600; transition: background 250ms ease, border-color 250ms ease;" style-hover="background: rgba(255,255,255,0.1); border-color: #FFFFFF; color: #FFFFFF;">See my work</a>
+          <sc-if value="{{ cvUrl }}" hint-placeholder-val="{{ false }}">
+            <a href="{{ cvUrl }}" target="_blank" rel="noopener" style="white-space: nowrap; flex: none; padding: 15px 8px; color: #FFFFFF; font-size: 15px; font-weight: 600; text-decoration: underline; text-underline-offset: 5px; text-decoration-color: rgba(255,255,255,0.45);" style-hover="color: #F2C9D6;">View CV</a>
+          </sc-if>
+        </div>
+      </div>
+
+      <figure aria-label="The stages I work across, from raw data to AI systems" style="margin: 0; min-width: 0; display: flex; flex-direction: column; gap: 20px;">
+        <div style="display: flex; justify-content: space-between; gap: 12px; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #F2C9D6;">
+          <span>What I work on</span>
+          <span style="display: flex; align-items: center; gap: 14px;">
+            <span aria-hidden="true" style="color: #FFFFFF; font-feature-settings: 'tnum' 1;">{{ activeLabel }}</span>
+            <sc-if value="{{ canAnimate }}" hint-placeholder-val="{{ false }}">
+              <button type="button" onClick="{{ togglePlay }}" aria-pressed="{{ pausedPressed }}" style="all: unset; box-sizing: border-box; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; min-height: 36px; padding: 0 12px; border: 1px solid rgba(255,255,255,0.6); color: #FFFFFF; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;" style-hover="background: rgba(255,255,255,0.1); border-color: #FFFFFF;" style-focus="outline: 2px solid #FFFFFF; outline-offset: 3px;"><span aria-hidden="true">{{ playIcon }}</span>{{ playLabel }}</button>
+            </sc-if>
+          </span>
+        </div>
+        <div style="position: relative;">
+          <span aria-hidden="true" style="position: absolute; left: 5px; top: 30px; bottom: 30px; width: 1px; background: rgba(255,255,255,0.22);"></span>
+          <span aria-hidden="true" style="position: absolute; left: 5px; top: 30px; width: 1px; height: {{ flowHeight }}; background: #FFFFFF; transition: height 900ms cubic-bezier(.6,0,.2,1);"></span>
+        <ol style="list-style: none; margin: 0; padding: 0;">
+          <sc-for list="{{ stages }}" as="s" hint-placeholder-count="6">
+            <li style="position: relative; display: grid; grid-template-columns: 11px minmax(0, 1fr) auto; gap: clamp(14px, 2vw, 22px); align-items: center; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.12);">
+              <span aria-hidden="true" style="width: 11px; height: 11px; border-radius: 50%; box-sizing: border-box; background: {{ s.dotBg }}; border: 1px {{ s.dotBorder }} #F2C9D6; box-shadow: {{ s.glow }}; transition: background 500ms ease, box-shadow 500ms ease;"></span>
+              <span style="display: flex; flex-direction: column; gap: 3px; min-width: 0; opacity: {{ s.opacity }}; transform: translateX({{ s.shift }}); transition: opacity 500ms ease, transform 500ms ease;">
+                <span style="font-weight: 600; font-size: clamp(19px, 2vw, 25px); letter-spacing: -0.02em; line-height: 1.15;">{{ s.name }}</span>
+                <span style="font-size: 14px; color: rgba(255,255,255,0.82);">{{ s.desc }}</span>
+              </span>
+              <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 4px 9px; border: 1px {{ s.tagBorder }} rgba(255,255,255,0.55); white-space: nowrap;">{{ s.status }}</span>
+            </li>
+          </sc-for>
+        </ol>
+        </div>
+      </figure>
+    </div>
+    <div style="position: relative; border-top: 1px solid rgba(255,255,255,0.16);">
+      <ul style="list-style: none; max-width: 1280px; margin: 0 auto; padding: 20px clamp(20px, 5vw, 64px); display: flex; flex-wrap: wrap; gap: 8px 40px; font-size: 14.5px; color: rgba(255,255,255,0.86); box-sizing: border-box;">
+        <li><strong style="color: #FFFFFF; font-weight: 600;">Performance Senior Analyst, e&amp; Business Egypt</strong></li>
+        <li>{{ degree }}</li>
+        <li>Open to freelance projects</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="problems" aria-labelledby="problems-h" data-screen-label="02 Problems" style="max-width: 1280px; margin: 0 auto; padding: clamp(64px, 10vw, 144px) clamp(20px, 5vw, 64px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap: 40px clamp(48px, 8vw, 120px); align-items: start;">
+    <div data-reveal="" style="position: {{ stickyPos }}; top: 120px; display: flex; flex-direction: column; gap: 20px;">
+      <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #6E1535;">01 · Problems</span>
+      <h2 id="problems-h" style="margin: 0; font-weight: 700; font-size: clamp(36px, 4.8vw, 66px); line-height: 1.02; letter-spacing: -0.035em;">Problems <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; color: #6E1535;">I solve</span></h2>
+      <p style="margin: 0; max-width: 42ch; font-size: 17px; line-height: 1.6; color: #4A4246;">Most of my work starts with messy files, repeated reports, unclear KPIs or scattered data.</p>
+    </div>
+    <ol style="list-style: none; margin: 0; padding: 0; border-top: 1px solid #E6DEDF;">
+      <sc-for list="{{ problems }}" as="p" hint-placeholder-count="5">
+        <li data-reveal="" style="border-bottom: 1px solid #E6DEDF;">
+          <a href="{{ p.href }}" onClick="{{ p.pick }}" style="display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 8px 14px; padding: 24px 0; text-decoration: none; color: #111111; transition: color 300ms ease, padding 300ms ease;" style-hover="color: #6E1535; padding-left: 8px;">
+            <span aria-hidden="true" style="font-family: 'Instrument Serif', serif; font-style: italic; font-size: 24px; line-height: 1.2; color: #6E1535;">{{ p.num }}</span>
+            <span style="font-size: clamp(19px, 1.7vw, 23px); font-weight: 500; line-height: 1.35; letter-spacing: -0.01em;">{{ p.text }}</span>
+            <span aria-hidden="true"></span>
+            <span style="font-size: 14px; font-weight: 600; color: #6E1535; display: flex; gap: 8px; align-items: center;">{{ p.service }} <span aria-hidden="true">→</span></span>
+          </a>
+        </li>
+      </sc-for>
+    </ol>
+  </section>
+
+  <section id="services" aria-labelledby="services-h" data-screen-label="03 Services" style="background: #111111; color: #FFFFFF;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: clamp(64px, 10vw, 136px) clamp(20px, 5vw, 64px);">
+      <div data-reveal="" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 20px 80px; align-items: end; margin-bottom: clamp(40px, 6vw, 72px);">
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+          <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #E8A9BD;">02 · Services</span>
+          <h2 id="services-h" style="margin: 0; font-weight: 700; font-size: clamp(36px, 4.8vw, 66px); line-height: 1.02; letter-spacing: -0.035em;">What I can <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; color: #E8A9BD;">build for you.</span></h2>
+        </div>
+        <p style="margin: 0; max-width: 46ch; font-size: 17px; line-height: 1.6; color: rgba(255,255,255,0.78);">Four kinds of work I do regularly. Each one ends with working code or a working dashboard, plus notes your team can follow.</p>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 32px clamp(32px, 5vw, 72px); align-items: flex-start;">
+        <div role="{{ listRole }}" aria-label="Services" style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; border-top: 1px solid rgba(255,255,255,0.16);">
+          <sc-for list="{{ services }}" as="s" hint-placeholder-count="4">
+            <div style="display: flex; flex-direction: column; border-bottom: 1px solid rgba(255,255,255,0.16);">
+              <button type="button" id="{{ s.id }}" role="{{ s.role }}" aria-selected="{{ s.ariaSelected }}" aria-expanded="{{ s.ariaExpanded }}" aria-controls="{{ s.controls }}" onClick="{{ s.select }}" onKeyDown="{{ s.keyNav }}" style="all: unset; box-sizing: border-box; cursor: pointer; display: grid; grid-template-columns: 34px minmax(0, 1fr) 20px; gap: 14px; align-items: center; padding: 20px 18px; min-height: 64px; background: {{ s.bg }}; transition: background 350ms ease;" style-hover="background: {{ s.hoverBg }};">
+                <span aria-hidden="true" style="font-family: 'Instrument Serif', serif; font-style: italic; font-size: 22px; color: {{ s.numColor }};">{{ s.num }}</span>
+                <span style="display: flex; flex-direction: column; gap: 4px; min-width: 0;">
+                  <span style="font-size: clamp(18px, 1.6vw, 21px); font-weight: 600; letter-spacing: -0.015em; line-height: 1.25;">{{ s.title }}</span>
+                  <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: {{ s.discColor }};">{{ s.discipline }}</span>
+                </span>
+                <span aria-hidden="true" style="font-size: 18px; text-align: right;">{{ s.indicator }}</span>
+              </button>
+              <sc-if value="{{ s.inline }}" hint-placeholder-val="{{ false }}">
+                <div id="{{ s.panelId }}" role="region" aria-labelledby="{{ s.id }}" style="display: flex; flex-direction: column; gap: 22px; padding: 6px 18px 28px; background: #191919;">
+                  <p style="margin: 0; font-size: 16.5px; line-height: 1.55;"><strong style="font-weight: 700;">The problem.</strong> {{ s.problem }}</p>
+                  <p style="margin: 0; font-size: 16.5px; line-height: 1.55;"><strong style="font-weight: 700;">What you get.</strong> {{ s.solution }}</p>
+                  <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 8px;">
+                    <sc-for list="{{ s.deliverables }}" as="d" hint-placeholder-count="5">
+                      <li style="font-size: 14px; padding: 8px 12px; border: 1px solid rgba(255,255,255,0.24);">{{ d }}</li>
+                    </sc-for>
+                  </ul>
+                  <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.7);">Related work</span>
+                    <sc-for list="{{ s.related }}" as="r" hint-placeholder-count="2">
+                      <a href="{{ r.href }}" style="color: #FFFFFF; font-size: 16px; font-weight: 600; padding: 6px 0; text-decoration: underline; text-underline-offset: 4px; text-decoration-color: #B66A82;">{{ r.label }}</a>
+                    </sc-for>
+                  </div>
+                  <a href="#contact" onClick="{{ s.pick }}" style="display: flex; justify-content: center; align-items: center; gap: 12px; padding: 16px 22px; background: #6E1535; color: #FFFFFF; text-decoration: none; font-size: 15.5px; font-weight: 700;">{{ s.cta }} <span aria-hidden="true">→</span></a>
+                </div>
+              </sc-if>
+            </div>
+          </sc-for>
+        </div>
+
+        <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+          <div id="svc-panel" role="tabpanel" aria-labelledby="{{ sel.id }}" style="flex: 2 1 420px; box-sizing: border-box; min-width: 0; display: flex; flex-direction: column; gap: 30px; padding: clamp(24px, 3.5vw, 44px); background: #191919;">
+            <header style="display: flex; flex-direction: column; gap: 10px;">
+              <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #E8A9BD;">{{ sel.discipline }}</span>
+              <h3 style="margin: 0; font-weight: 700; font-size: clamp(28px, 3vw, 40px); line-height: 1.06; letter-spacing: -0.03em;">{{ sel.title }}</h3>
+            </header>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 22px 40px;">
+              <div style="display: flex; flex-direction: column; gap: 8px;">
+                <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.7);">The problem</span>
+                <p style="margin: 0; font-size: 17px; line-height: 1.55;">{{ sel.problem }}</p>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 8px;">
+                <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.7);">What you get</span>
+                <p style="margin: 0; font-size: 17px; line-height: 1.55;">{{ sel.solution }}</p>
+              </div>
+            </div>
+            <ul aria-label="Deliverables" style="margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 8px;">
+              <sc-for list="{{ sel.deliverables }}" as="d" hint-placeholder-count="6">
+                <li style="font-size: 14px; padding: 8px 14px; border: 1px solid rgba(255,255,255,0.24);">{{ d }}</li>
+              </sc-for>
+            </ul>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 20px 40px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.14);">
+              <div style="display: flex; flex-direction: column; gap: 8px;">
+                <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.7);">Good fit for</span>
+                <p style="margin: 0; font-size: 15px; line-height: 1.55; color: rgba(255,255,255,0.88);">{{ sel.fit }}</p>
+                <span style="font-size: 14px; color: rgba(255,255,255,0.7);">{{ sel.tech }}</span>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 6px;">
+                <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.7);">Related work</span>
+                <sc-for list="{{ sel.related }}" as="r" hint-placeholder-count="2">
+                  <a href="{{ r.href }}" style="color: #FFFFFF; font-size: 15.5px; font-weight: 600; text-decoration: underline; text-underline-offset: 4px; text-decoration-color: #B66A82; padding: 3px 0;" style-hover="color: #E8A9BD;">{{ r.label }}</a>
+                </sc-for>
+              </div>
+            </div>
+            <a href="#contact" onClick="{{ sel.pick }}" style="align-self: flex-start; white-space: nowrap; display: inline-flex; align-items: center; gap: 12px; padding: 15px 22px; background: #6E1535; color: #FFFFFF; text-decoration: none; font-size: 15px; font-weight: 700; transition: gap 250ms ease, background 250ms ease;" style-hover="gap: 18px; background: #8A1D44; color: #FFFFFF;">{{ sel.cta }} <span aria-hidden="true">→</span></a>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </section>
+
+  <section id="case-studies" aria-labelledby="work-h" data-screen-label="04 Work" style="max-width: 1280px; margin: 0 auto; padding: clamp(64px, 10vw, 144px) clamp(20px, 5vw, 64px) clamp(56px, 7vw, 96px);">
+    <div data-reveal="" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 20px 80px; align-items: end; margin-bottom: clamp(40px, 6vw, 72px);">
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+        <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #6E1535;">03 · Selected work</span>
+        <h2 id="work-h" style="margin: 0; font-weight: 700; font-size: clamp(36px, 4.8vw, 66px); line-height: 1.02; letter-spacing: -0.035em;">Work I can <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; color: #6E1535;">show you.</span></h2>
+      </div>
+      <p style="margin: 0; max-width: 46ch; font-size: 17px; line-height: 1.6; color: #4A4246;">Corporate work is sanitized, so you won't see company data, KPIs or internal details. Anything still in progress says so.</p>
+    </div>
+
+    <a href="case-study.html?id=b2b-performance" data-reveal="" style="display: flex; flex-direction: column; gap: 28px; text-decoration: none; color: #111111; margin-bottom: clamp(56px, 7vw, 96px);">
+      <div style="position: relative; overflow: hidden; aspect-ratio: {{ featAspect }}; background: #3D0B20; color: #FFFFFF;">
+        <sc-if value="{{ featNoImg }}" hint-placeholder-val="{{ true }}">
+          <div aria-hidden="true" style="position: absolute; inset: 0; padding: clamp(20px, 3.5vw, 44px); display: flex; flex-direction: column; justify-content: space-between; gap: 16px;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px;">
+              <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-size: clamp(44px, 6vw, 88px); line-height: 0.8; color: #F2C9D6;">A</span>
+              <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; padding: 6px 10px; background: #6E1535;">Featured · Sanitized</span>
+            </div>
+            <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-size: clamp(30px, 5vw, 72px); line-height: 1; max-width: 14ch;">B2B performance dashboards</span>
+            <span style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="font-size: 12.5px; padding: 6px 10px; border: 1px solid rgba(255,255,255,0.35);">Source extracts</span><span style="font-size: 12.5px; padding: 6px 10px; border: 1px solid rgba(255,255,255,0.35);">ETL</span><span style="font-size: 12.5px; padding: 6px 10px; border: 1px solid rgba(255,255,255,0.35);">Validation</span><span style="font-size: 12.5px; padding: 6px 10px; border: 1px solid rgba(255,255,255,0.35);">KPI layer</span><span style="font-size: 12.5px; padding: 6px 10px; background: #FFFFFF; color: #3D0B20;">Dashboards</span></span>
+          </div>
+        </sc-if>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr)); gap: 24px clamp(40px, 6vw, 96px);">
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #6E1535;">Performance analytics · e&amp; Egypt</span>
+          <h3 style="margin: 0; font-weight: 700; font-size: clamp(28px, 3.4vw, 46px); line-height: 1.05; letter-spacing: -0.03em;">B2B performance analytics system</h3>
+          <span style="font-size: 14px; color: #4A4246;">Python · SQL · Excel · Dashboards</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+          <dl style="margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 170px), 1fr)); gap: 16px 28px;">
+            <div style="display: flex; flex-direction: column; gap: 6px;"><dt style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #6E1535;">Problem</dt><dd style="margin: 0; font-size: 15.5px; line-height: 1.55;">Performance data from several sources, in different shapes, reported by hand.</dd></div>
+            <div style="display: flex; flex-direction: column; gap: 6px;"><dt style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #6E1535;">What I built</dt><dd style="margin: 0; font-size: 15.5px; line-height: 1.55;">A cleaning and validation pipeline, agreed KPI definitions and dashboards on top.</dd></div>
+          </dl>
+          <span style="display: inline-flex; gap: 10px; align-items: center; font-size: 15px; font-weight: 700; color: #6E1535;">Read the case study <span aria-hidden="true">→</span></span>
+        </div>
+      </div>
+    </a>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr)); gap: clamp(48px, 6vw, 72px) clamp(28px, 4vw, 56px); margin-bottom: clamp(64px, 9vw, 112px);">
+      <sc-for list="{{ cards }}" as="p" hint-placeholder-count="4">
+        <sc-if value="{{ p.isCard }}" hint-placeholder-val="{{ true }}">
+        <a href="{{ p.href }}" data-reveal="" style="display: flex; flex-direction: column; gap: 22px; text-decoration: none; color: #111111;">
+          <div style="position: relative; overflow: hidden; aspect-ratio: 4 / 3; background: {{ p.bg }}; color: {{ p.fg }}; box-sizing: border-box; border: {{ p.frame }};">
+            <sc-if value="{{ p.img }}" hint-placeholder-val="{{ false }}">
+              <img src="{{ p.img }}" alt="{{ p.imgAlt }}" onError="{{ p.onImgError }}" loading="lazy" style="width: 100%; height: 100%; object-fit: {{ p.imgFit }}; transition: transform 900ms cubic-bezier(.2,.7,.2,1);" style-hover="transform: scale(1.03);">
+            </sc-if>
+            <sc-if value="{{ p.noImg }}" hint-placeholder-val="{{ true }}">
+              <div aria-hidden="true" style="position: absolute; inset: 0; padding: clamp(20px, 3vw, 32px); display: flex; flex-direction: column; justify-content: space-between; gap: 12px;">
+                <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-size: clamp(40px, 5vw, 64px); line-height: 0.8; color: {{ p.accent }};">{{ p.letter }}</span>
+                <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-size: clamp(28px, 3.4vw, 46px); line-height: 1.02; max-width: 12ch;">{{ p.big }}</span>
+                <span style="display: flex; flex-wrap: wrap; gap: 6px;">
+                  <sc-for list="{{ p.chain }}" as="k" hint-placeholder-count="4">
+                    <span style="font-size: 12.5px; padding: 5px 9px; border: 1px {{ p.chipStyle }} {{ p.chipBorder }};">{{ k }}</span>
+                  </sc-for>
+                </span>
+              </div>
+            </sc-if>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <span style="display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #6E1535;">
+              <span>{{ p.category }}</span>
+              <sc-if value="{{ p.building }}" hint-placeholder-val="{{ false }}">
+                <span style="padding: 4px 9px; border: 1px dashed #6E1535;">Currently building</span>
+              </sc-if>
+            </span>
+            <h3 style="margin: 0; font-weight: 700; font-size: clamp(24px, 2.6vw, 34px); line-height: 1.1; letter-spacing: -0.025em;">{{ p.title }}</h3>
+            <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #3E373A;">{{ p.summary }}</p>
+            <sc-if value="{{ p.metric }}" hint-placeholder-val="{{ false }}">
+              <div style="display: flex; align-items: baseline; gap: 12px; padding: 12px 0; border-top: 1px solid #E6DEDF; border-bottom: 1px solid #E6DEDF;">
+                <span style="font-weight: 700; font-size: 30px; letter-spacing: -0.03em; color: #6E1535;">{{ p.metric }}</span>
+                <sc-if value="{{ p.metricLabel }}" hint-placeholder-val="{{ false }}"><span style="font-size: 14px; color: #4A4246;">{{ p.metricLabel }}</span></sc-if>
+              </div>
+            </sc-if>
+            <span style="display: inline-flex; gap: 10px; align-items: center; font-size: 15px; font-weight: 700; color: #6E1535;">{{ p.linkText }} <span aria-hidden="true">→</span></span>
+          </div>
+        </a>
+        </sc-if>
+        <sc-if value="{{ p.isPanel }}" hint-placeholder-val="{{ false }}">
+          <div data-reveal="" style="display: flex; flex-direction: column; gap: 14px; padding: clamp(20px, 3vw, 32px); border: 1px dashed #B66A82; box-sizing: border-box; min-width: 0;">
+            <h3 style="margin: 0; font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #6E1535;">Building now</h3>
+            <p style="margin: 0; font-size: 15.5px; line-height: 1.55; color: #3E373A;">Still in progress. Each page shows the design so far, not a finished system.</p>
+            <ol style="list-style: none; margin: 0; padding: 0; border-top: 1px dashed #B66A82;">
+              <sc-for list="{{ buildingCases }}" as="bc" hint-placeholder-count="2">
+                <li style="border-bottom: 1px dashed #B66A82;">
+                  <a href="{{ bc.href }}" style="display: grid; grid-template-columns: 32px minmax(0, 1fr) 24px; gap: 12px; align-items: center; padding: 18px 8px; text-decoration: none; color: #111111; transition: background 350ms ease, color 350ms ease;" style-hover="background: #6E1535; color: #FFFFFF;">
+                    <span aria-hidden="true" style="font-family: 'Instrument Serif', serif; font-style: italic; font-size: 26px; line-height: 1;">{{ bc.letter }}</span>
+                    <span style="display: flex; flex-direction: column; gap: 4px; min-width: 0;">
+                      <span style="font-size: clamp(17px, 1.6vw, 21px); font-weight: 600; letter-spacing: -0.02em; line-height: 1.25;">{{ bc.title }}</span>
+                      <span style="font-size: 14px; opacity: 0.8;">{{ bc.category }} · Currently building</span>
+                    </span>
+                    <span aria-hidden="true" style="font-size: 20px; justify-self: end;">→</span>
+                  </a>
+                </li>
+              </sc-for>
+            </ol>
+          </div>
+        </sc-if>
+      </sc-for>
+    </div>
+
+    <h3 style="margin: 0 0 14px; font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;">More ML projects</h3>
+    <ol style="list-style: none; margin: 0; padding: 0; border-top: 1px solid #111111;">
+      <sc-for list="{{ moreCases }}" as="c" hint-placeholder-count="3">
+        <li data-reveal="" style="border-bottom: 1px solid #E6DEDF;">
+          <a href="{{ c.href }}" style="display: grid; grid-template-columns: 40px minmax(0, 1fr) 24px; gap: 14px; align-items: center; padding: 22px 12px; text-decoration: none; color: #111111; transition: background 350ms ease, color 350ms ease;" style-hover="background: #6E1535; color: #FFFFFF;">
+            <span aria-hidden="true" style="font-family: 'Instrument Serif', serif; font-style: italic; font-size: 28px; line-height: 1;">{{ c.letter }}</span>
+            <span style="display: flex; flex-direction: column; gap: 4px; min-width: 0;">
+              <span style="font-size: clamp(18px, 1.8vw, 23px); font-weight: 600; letter-spacing: -0.02em; line-height: 1.25;">{{ c.title }}</span>
+              <span style="font-size: 14px; opacity: 0.8;">{{ c.category }}{{ c.metricNote }}</span>
+            </span>
+            <span aria-hidden="true" style="font-size: 20px; justify-self: end;">→</span>
+          </a>
+        </li>
+      </sc-for>
+    </ol>
+    <p style="margin: clamp(36px, 5vw, 56px) 0 0; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: baseline; font-size: clamp(19px, 1.8vw, 24px); font-weight: 600; letter-spacing: -0.015em;">Have something similar in mind? <a href="#contact" style="color: #6E1535; text-underline-offset: 6px;">Discuss a project →</a></p>
+  </section>
+
+  <section id="process" aria-labelledby="process-h" data-screen-label="05 How I work" style="background: #F8F6F5;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: clamp(64px, 10vw, 136px) clamp(20px, 5vw, 64px);">
+      <div data-reveal="" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 20px 80px; align-items: end; margin-bottom: clamp(40px, 6vw, 72px);">
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+          <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #6E1535;">04 · How I work</span>
+          <h2 id="process-h" style="margin: 0; font-weight: 700; font-size: clamp(36px, 4.8vw, 66px); line-height: 1.02; letter-spacing: -0.035em;">How <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; color: #6E1535;">I work</span></h2>
+        </div>
+        <p style="margin: 0; max-width: 48ch; font-size: 17px; line-height: 1.65; color: #3E373A;">First I ask what decision you need to make and what data you have. That decides the rest. Often a clean pipeline and one reliable KPI help more than a complex model.</p>
+      </div>
+      <ol style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 160px), 1fr)); gap: 28px 20px;">
+        <sc-for list="{{ steps }}" as="st" hint-placeholder-count="6">
+          <li data-reveal="" style="display: flex; flex-direction: column; gap: 8px; padding-top: 16px; border-top: 1px solid #D9CFD1; transition: border-color 300ms ease;" style-hover="border-color: #6E1535;">
+            <span aria-hidden="true" style="font-family: 'Instrument Serif', serif; font-style: italic; font-size: 36px; line-height: 1; color: #6E1535;">{{ st.num }}</span>
+            <span style="font-size: 18px; font-weight: 700; letter-spacing: -0.015em;">{{ st.title }}</span>
+            <span style="font-size: 15px; line-height: 1.5; color: #4A4246;">{{ st.desc }}</span>
+          </li>
+        </sc-for>
+      </ol>
+    </div>
+  </section>
+
+  <section id="ai" aria-labelledby="ai-h" data-screen-label="06 AI direction" style="background: #3D0B20; color: #FFFFFF;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: clamp(64px, 10vw, 144px) clamp(20px, 5vw, 64px);">
+      <div data-reveal="" style="display: flex; flex-direction: column; gap: 22px; max-width: 980px; margin-bottom: clamp(40px, 6vw, 72px);">
+        <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #F2C9D6;">05 · AI work</span>
+        <h2 id="ai-h" style="margin: 0; font-weight: 700; font-size: clamp(40px, 6vw, 88px); line-height: 1; letter-spacing: -0.04em;">AI projects <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; color: #F2C9D6;">(newer for me)</span></h2>
+        <p style="margin: 0; max-width: 60ch; font-size: 17px; line-height: 1.65; color: rgba(255,255,255,0.86);">I am building LLM apps on top of my data work. The model does not control everything. In a Text-to-SQL tool, the LLM writes a query and the app decides what can run.</p>
+      </div>
+
+      <ol data-reveal="" aria-label="Skill progression" style="list-style: none; margin: 0 0 clamp(48px, 6vw, 80px); padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr)); gap: 24px 0;">
+        <sc-for list="{{ evolution }}" as="e" hint-placeholder-count="5">
+          <li style="display: flex; flex-direction: column; gap: 12px; padding-right: 16px;">
+            <span aria-hidden="true" style="display: flex; align-items: center;">
+              <span style="width: 13px; height: 13px; border-radius: 50%; box-sizing: border-box; flex: none; background: {{ e.dotBg }}; border: 1px {{ e.border }} #F2C9D6;"></span>
+              <span style="flex: 1; height: 0; border-top: 1px {{ e.border }} rgba(255,255,255,0.35);"></span>
+            </span>
+            <span style="font-size: 11.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #F2C9D6;">{{ e.status }}</span>
+            <span style="font-size: clamp(20px, 2vw, 26px); font-weight: 600; letter-spacing: -0.02em; line-height: 1.1;">{{ e.name }}</span>
+          </li>
+        </sc-for>
+      </ol>
+
+      <article id="ai-automation" data-reveal="" style="padding: clamp(24px, 3.5vw, 40px); border: 1px dashed rgba(242,201,214,0.6); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 24px 56px; align-items: start;">
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <span style="align-self: flex-start; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 5px 10px; border: 1px dashed #F2C9D6; color: #F2C9D6;">Newer territory</span>
+          <h3 style="margin: 0; font-weight: 700; font-size: clamp(24px, 2.4vw, 32px); line-height: 1.1; letter-spacing: -0.025em;">Small AI pilots on your own data</h3>
+          <p style="margin: 0; font-size: 16px; line-height: 1.6; color: rgba(255,255,255,0.86);">I take small, clear AI pilots on your data. This work is newer for me than analytics and automation.</p>
+          <ul style="margin: 4px 0 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 8px;">
+            <li style="font-size: 14px; padding: 6px 12px; border: 1px dashed rgba(255,255,255,0.4);">LLM apps</li>
+            <li style="font-size: 14px; padding: 6px 12px; border: 1px dashed rgba(255,255,255,0.4);">LangChain</li>
+            <li style="font-size: 14px; padding: 6px 12px; border: 1px dashed rgba(255,255,255,0.4);">RAG</li>
+            <li style="font-size: 14px; padding: 6px 12px; border: 1px dashed rgba(255,255,255,0.4);">Agents</li>
+            <li style="font-size: 14px; padding: 6px 12px; border: 1px dashed rgba(255,255,255,0.4);">Text-to-SQL</li>
+          </ul>
+        </div>
+        <sc-if value="{{ showBuilding }}" hint-placeholder-val="{{ true }}">
+          <div style="display: flex; flex-direction: column; border-top: 1px solid rgba(255,255,255,0.2);">
+            <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #F2C9D6; padding: 14px 0 6px;">In progress</span>
+            <a href="case-study.html?id=executive-reporting" style="display: flex; justify-content: space-between; gap: 16px; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.2); color: #FFFFFF; text-decoration: none; font-size: 18px; font-weight: 600; transition: color 250ms ease, padding 250ms ease;" style-hover="color: #F2C9D6; padding-left: 6px;">Automated executive reporting <span aria-hidden="true">→</span></a>
+            <a href="case-study.html?id=nl-data-assistant" style="display: flex; justify-content: space-between; gap: 16px; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.2); color: #FFFFFF; text-decoration: none; font-size: 18px; font-weight: 600; transition: color 250ms ease, padding 250ms ease;" style-hover="color: #F2C9D6; padding-left: 6px;">Natural-language data assistant <span aria-hidden="true">→</span></a>
+          </div>
+        </sc-if>
+      </article>
+    </div>
+  </section>
+
+  <section id="capabilities" aria-labelledby="cap-h" data-screen-label="07 Capabilities" style="max-width: 1280px; margin: 0 auto; padding: clamp(64px, 10vw, 144px) clamp(20px, 5vw, 64px);">
+    <div data-reveal="" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 20px 80px; align-items: end; margin-bottom: clamp(36px, 5vw, 56px);">
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+        <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #6E1535;">06 · Capabilities</span>
+        <h2 id="cap-h" style="margin: 0; font-weight: 700; font-size: clamp(36px, 4.8vw, 66px); line-height: 1.02; letter-spacing: -0.035em;">Tools, grouped by <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; color: #6E1535;">what they do.</span></h2>
+      </div>
+      <ul aria-label="Legend" style="margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 10px 22px; font-size: 14.5px; color: #3E373A;">
+        <li style="display: flex; align-items: center; gap: 8px;"><span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 50%; background: #6E1535;"></span>Proven: used at work or in finished projects</li>
+        <li style="display: flex; align-items: center; gap: 8px;"><span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 50%; box-sizing: border-box; border: 1px dashed #6E1535;"></span>Building: learning and using now</li>
+      </ul>
+    </div>
+    <ol style="list-style: none; margin: 0; padding: 0; border-top: 1px solid #111111;">
+      <sc-for list="{{ capabilities }}" as="g" hint-placeholder-count="5">
+        <li data-reveal="" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 16px clamp(32px, 5vw, 80px); padding: 28px clamp(12px, 2vw, 20px); border-bottom: 1px {{ g.border }} {{ g.lineColor }}; background: {{ g.bg }};">
+          <div style="display: flex; gap: 16px; align-items: baseline;">
+            <span aria-hidden="true" style="font-family: 'Instrument Serif', serif; font-style: italic; font-size: 26px; line-height: 1; color: #6E1535;">{{ g.num }}</span>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <h3 style="margin: 0; font-size: clamp(21px, 2.2vw, 28px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.1;">{{ g.title }}</h3>
+              <span style="display: flex; align-items: center; gap: 8px; font-size: 11.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #6E1535;"><span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 50%; box-sizing: border-box; background: {{ g.dotBg }}; border: 1px {{ g.border }} #6E1535;"></span>{{ g.status }}</span>
+            </div>
+          </div>
+          <ul style="grid-column: span 2 / auto; margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 8px; align-content: start;">
+            <sc-for list="{{ g.items }}" as="it" hint-placeholder-count="6">
+              <li style="font-size: 15px; padding: 6px 12px; background: {{ g.chipBg }}; border: 1px {{ g.border }} {{ g.chipBorder }};">{{ it }}</li>
+            </sc-for>
+          </ul>
+        </li>
+      </sc-for>
+    </ol>
+  </section>
+
+  <section id="about" aria-labelledby="about-h" data-screen-label="08 About" style="background: #F8F6F5;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: clamp(64px, 10vw, 144px) clamp(20px, 5vw, 64px); display: flex; flex-wrap: wrap; gap: 48px clamp(48px, 7vw, 112px); align-items: flex-start;">
+      <figure data-reveal="" style="margin: 0 0 0 16px; flex: 1 1 260px; max-width: 440px; min-width: 0;">
+        <div style="position: relative;">
+          <div aria-hidden="true" style="position: absolute; left: -16px; bottom: -16px; width: 62%; height: 62%; background: #6E1535;"></div>
+          <div style="position: relative; aspect-ratio: 4 / 5; background: #3D0B20; overflow: hidden;">
+            <sc-if value="{{ photo }}" hint-placeholder-val="{{ false }}">
+              <img src="{{ photo }}" alt="Portrait of Hana Salah" onError="{{ onPhotoError }}" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;">
+            </sc-if>
+            <sc-if value="{{ noPhoto }}" hint-placeholder-val="{{ true }}">
+              <span aria-hidden="true" style="position: absolute; inset: 0; display: grid; place-items: center; font-family: 'Instrument Serif', serif; font-style: italic; font-size: clamp(120px, 16vw, 220px); color: #F2C9D6;">H.</span>
+            </sc-if>
+          </div>
+        </div>
+      </figure>
+
+      <div style="flex: 2 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 24px;">
+        <span data-reveal="" style="font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #6E1535;">07 · About</span>
+        <h2 id="about-h" data-reveal="" style="margin: 0; font-weight: 700; font-size: clamp(34px, 4.4vw, 60px); line-height: 1.04; letter-spacing: -0.035em; max-width: 18ch;">I help teams clean their data, report on it and <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; color: #6E1535;">predict from it.</span></h2>
+        <div data-reveal="" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 16px 40px;">
+          <p style="margin: 0; font-size: 17px; line-height: 1.7; color: #2A2427;">I work as Performance Senior Analyst, e&amp; Business Egypt. Day to day I handle B2B performance data: KPI tracking, ETL, dashboards, management reports and checking sales commission figures. I also worked in business development. That helps me see what a business needs from its data.</p>
+          <p style="margin: 0; font-size: 17px; line-height: 1.7; color: #2A2427;">My degree is a {{ degree }}. Most of my ML projects started there. Now I am learning to build LLM apps, RAG and agents on top of the same data work.</p>
+        </div>
+        <sc-if value="{{ hasAboutLinks }}" hint-placeholder-val="{{ true }}">
+          <div data-reveal="" style="margin: 6px 0 0; display: flex; flex-wrap: wrap; gap: 0 28px; padding-top: 14px; border-top: 1px solid #D9CFD1;">
+            <sc-if value="{{ cvUrl }}" hint-placeholder-val="{{ true }}">
+              <a href="{{ cvUrl }}" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 6px; min-height: 44px; color: #6E1535; font-size: 16px; font-weight: 600; text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 6px; text-decoration-color: rgba(110,21,53,0.4);" style-hover="color: #3D0B20; text-decoration-color: #3D0B20;">View CV <span aria-hidden="true">↗</span></a>
+            </sc-if>
+            <sc-if value="{{ linkedinUrl }}" hint-placeholder-val="{{ true }}">
+              <a href="{{ linkedinUrl }}" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 6px; min-height: 44px; color: #6E1535; font-size: 16px; font-weight: 600; text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 6px; text-decoration-color: rgba(110,21,53,0.4);" style-hover="color: #3D0B20; text-decoration-color: #3D0B20;">LinkedIn <span aria-hidden="true">↗</span></a>
+            </sc-if>
+          </div>
+        </sc-if>
+
+        <div id="background" style="display: flex; flex-direction: column; gap: 12px; margin-top: 20px;">
+          <h3 style="margin: 0; font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;">Experience</h3>
+          <ol style="list-style: none; margin: 0; padding: 0; border-top: 1px solid #111111;">
+            <sc-for list="{{ timeline }}" as="t" hint-placeholder-count="4">
+              <li data-reveal="" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 170px), 1fr)); gap: 4px 28px; padding: 16px 0; border-bottom: 1px solid #D9CFD1; align-items: baseline;">
+                <span style="font-size: 14px; font-weight: 600; color: #6E1535; font-feature-settings: 'tnum' 1;">{{ t.date }}</span>
+                <span style="display: flex; flex-direction: column; gap: 2px; grid-column: span 2 / auto;">
+                  <span style="font-size: 17px; font-weight: 700; letter-spacing: -0.01em;">{{ t.role }}<sc-if value="{{ t.org }}" hint-placeholder-val="{{ true }}"><span style="font-weight: 500; color: #4A4246;"> · {{ t.org }}</span></sc-if></span>
+                  <sc-if value="{{ t.note }}" hint-placeholder-val="{{ false }}"><span style="font-size: 15px; line-height: 1.55; color: #3E373A;">{{ t.note }}</span></sc-if>
+                </span>
+              </li>
+            </sc-for>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <sc-if value="{{ showWwm }}" hint-placeholder-val="{{ false }}">
+    <section id="working-with-me" aria-labelledby="wwm-h" data-screen-label="Working with me" style="max-width: 1280px; margin: 0 auto; padding: clamp(64px, 10vw, 144px) clamp(20px, 5vw, 64px);">
+      <div data-reveal="" style="display: flex; flex-direction: column; gap: 20px; margin-bottom: clamp(32px, 5vw, 56px);">
+        <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #6E1535;">08 · Working with me</span>
+        <h2 id="wwm-h" style="margin: 0; font-weight: 700; font-size: clamp(36px, 4.8vw, 66px); line-height: 1.02; letter-spacing: -0.035em;">Working <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; color: #6E1535;">with me.</span></h2>
+      </div>
+      <dl data-reveal="" style="margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 28px 40px; border-top: 1px solid #111111; padding-top: 24px;">
+        <sc-for list="{{ wwm }}" as="w" hint-placeholder-count="4">
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <dt style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #6E1535;">{{ w.label }}</dt>
+            <dd style="margin: 0; font-size: 17px; line-height: 1.55;">{{ w.value }}</dd>
+          </div>
+        </sc-for>
+      </dl>
+    </section>
+  </sc-if>
+
+  <section id="contact" aria-labelledby="contact-h" data-screen-label="09 Contact" style="background: #111111; color: #FFFFFF;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: clamp(64px, 10vw, 144px) clamp(20px, 5vw, 64px) clamp(56px, 7vw, 96px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr)); gap: 48px clamp(48px, 7vw, 112px);">
+      <div style="display: flex; flex-direction: column; gap: 24px;">
+        <span data-reveal="" style="font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #E8A9BD;">{{ contactNum }} · Contact</span>
+        <h2 id="contact-h" data-reveal="" style="margin: 0; font-weight: 700; font-size: clamp(40px, 5.6vw, 80px); line-height: 1; letter-spacing: -0.04em;">Send me your data, reporting or <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; color: #E8A9BD;">automation</span> problem.</h2>
+        <p data-reveal="" style="margin: 0; max-width: 46ch; font-size: 17px; line-height: 1.6; color: rgba(255,255,255,0.84);">Tell me how things work today, where it gets stuck, and what you'd like to have instead. I'll tell you how I'd approach it.</p>
+        <div data-reveal="" style="display: flex; flex-direction: column; gap: 6px;">
+          <span style="font-size: 14px; color: rgba(255,255,255,0.7);">Or write to me directly:</span>
+          <span style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px 16px;">
+            <a href="{{ mailtoHref }}" style="color: #FFFFFF; font-size: 18px; font-weight: 600; text-underline-offset: 4px; text-decoration-color: #B66A82; overflow-wrap: anywhere; min-height: 44px; display: inline-flex; align-items: center;" style-hover="color: #E8A9BD;">{{ email }}</a>
+            <button type="button" onClick="{{ copyEmail }}" style="all: unset; box-sizing: border-box; cursor: pointer; display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border: 1px solid rgba(255,255,255,0.5); color: #FFFFFF; font-size: 14px; font-weight: 600;" style-hover="background: rgba(255,255,255,0.08); border-color: #FFFFFF;" style-focus="outline: 2px solid #E8A9BD; outline-offset: 3px;">Copy email</button>
+          </span>
+          <span role="status" style="font-size: 14px; line-height: 1.5; color: rgba(255,255,255,0.72); min-height: 21px;">{{ copyNote }}</span>
+        </div>
+        <ul aria-label="Profiles" style="margin: 10px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; border-top: 1px solid rgba(255,255,255,0.16);">
+          <sc-for list="{{ profiles }}" as="pr" hint-placeholder-count="2">
+            <li style="border-bottom: 1px solid rgba(255,255,255,0.16);">
+              <a href="{{ pr.url }}" target="{{ pr.target }}" rel="noopener" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 4px 20px; padding: 16px 0; color: #FFFFFF; text-decoration: none; transition: color 250ms ease;" style-hover="color: #E8A9BD;">
+                <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.7);">{{ pr.label }}</span>
+                <span style="font-size: 16px; font-weight: 500; overflow-wrap: anywhere;">{{ pr.display }}</span>
+              </a>
+            </li>
+          </sc-for>
+        </ul>
+      </div>
+
+      <form onSubmit="{{ submit }}" data-reveal="" aria-labelledby="brief-h" style="padding: clamp(22px, 3.5vw, 44px); background: #191919; display: flex; flex-direction: column; gap: 24px; align-self: start; min-width: 0; box-sizing: border-box;">
+        <h3 id="brief-h" style="margin: 0; font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #E8A9BD;">Project brief</h3>
+        <label style="display: flex; flex-direction: column; gap: 8px; font-size: 14.5px; font-weight: 600; color: rgba(255,255,255,0.9);">What do you need help with?
+          <span style="position: relative; display: block;">
+          <select value="{{ form.area }}" onChange="{{ setArea }}" style="appearance: none; width: 100%; padding: 12px 30px 12px 0; font: inherit; font-size: 16px; font-weight: 500; color: #FFFFFF; background: transparent; border: 0; border-bottom: 1px solid rgba(255,255,255,0.35); border-radius: 0; cursor: pointer;" style-focus="border-bottom-color: #E8A9BD; outline: 2px solid #E8A9BD; outline-offset: 4px;">
+            <sc-for list="{{ areas }}" as="a" hint-placeholder-count="5">
+              <option value="{{ a }}">{{ a }}</option>
+            </sc-for>
+          </select>
+          <span aria-hidden="true" style="position: absolute; right: 6px; top: 50%; width: 8px; height: 8px; margin-top: -7px; border-right: 2px solid #FFFFFF; border-bottom: 2px solid #FFFFFF; transform: rotate(45deg); pointer-events: none;"></span>
+        </span>
+        </label>
+        <label style="display: flex; flex-direction: column; gap: 8px; font-size: 14.5px; font-weight: 600; color: rgba(255,255,255,0.9);">How does it work today?
+          <textarea id="brief-workflow" rows="2" value="{{ form.workflow }}" onChange="{{ setWorkflow }}" placeholder="e.g. Weekly sales report built by hand from three Excel exports" style="width: 100%; box-sizing: border-box; padding: 10px 0; font: inherit; font-size: 16px; font-weight: 400; color: #FFFFFF; background: transparent; border: 0; border-bottom: 1px solid rgba(255,255,255,0.35); border-radius: 0; resize: vertical;" style-focus="border-bottom-color: #E8A9BD; outline: 2px solid #E8A9BD; outline-offset: 4px;"></textarea>
+        </label>
+        <label style="display: flex; flex-direction: column; gap: 8px; font-size: 14.5px; font-weight: 600; color: rgba(255,255,255,0.9);">Where does it get stuck?
+          <textarea rows="2" value="{{ form.bottleneck }}" onChange="{{ setBottleneck }}" placeholder="e.g. Takes a full day and the numbers don't always match" style="width: 100%; box-sizing: border-box; padding: 10px 0; font: inherit; font-size: 16px; font-weight: 400; color: #FFFFFF; background: transparent; border: 0; border-bottom: 1px solid rgba(255,255,255,0.35); border-radius: 0; resize: vertical;" style-focus="border-bottom-color: #E8A9BD; outline: 2px solid #E8A9BD; outline-offset: 4px;"></textarea>
+        </label>
+        <label style="display: flex; flex-direction: column; gap: 8px; font-size: 14.5px; font-weight: 600; color: rgba(255,255,255,0.9);">What would you like instead?
+          <textarea rows="2" value="{{ form.outcome }}" onChange="{{ setOutcome }}" placeholder="e.g. A dashboard that refreshes itself every Monday" style="width: 100%; box-sizing: border-box; padding: 10px 0; font: inherit; font-size: 16px; font-weight: 400; color: #FFFFFF; background: transparent; border: 0; border-bottom: 1px solid rgba(255,255,255,0.35); border-radius: 0; resize: vertical;" style-focus="border-bottom-color: #E8A9BD; outline: 2px solid #E8A9BD; outline-offset: 4px;"></textarea>
+        </label>
+        <button type="submit" style="all: unset; box-sizing: border-box; cursor: pointer; align-self: flex-start; display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 16px 26px; min-height: 52px; background: #6E1535; color: #FFFFFF; font-size: 15.5px; font-weight: 700; transition: gap 250ms ease, background 250ms ease;" style-hover="gap: 18px; background: #8A1D44;" style-focus="outline: 2px solid #E8A9BD; outline-offset: 3px;">Discuss a project <span aria-hidden="true">→</span></button>
+        <span role="status" style="font-size: 14px; line-height: 1.5; color: rgba(255,255,255,0.72);">{{ formNote }}</span>
+      </form>
+    </div>
+
+    <footer style="border-top: 1px solid rgba(255,255,255,0.14);">
+      <div style="max-width: 1280px; margin: 0 auto; padding: 32px clamp(20px, 5vw, 64px) 40px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 16px 40px;">
+        <span style="display: flex; align-items: baseline; gap: 8px;"><span style="font-weight: 800; font-size: 22px; letter-spacing: -0.02em;">Hana Salah</span><span aria-hidden="true" style="width: 7px; height: 7px; background: #B66A82; border-radius: 50%;"></span></span>
+        <nav aria-label="Footer" style="display: flex; gap: 4px 24px; flex-wrap: wrap; font-size: 14.5px;">
+          <a href="#services" style="color: rgba(255,255,255,0.85); text-decoration: none; display: inline-flex; align-items: center; min-height: 44px;" style-hover="color: #FFFFFF;">Services</a>
+          <a href="#case-studies" style="color: rgba(255,255,255,0.85); text-decoration: none; display: inline-flex; align-items: center; min-height: 44px;" style-hover="color: #FFFFFF;">Work</a>
+          <sc-for list="{{ profiles }}" as="pr" hint-placeholder-count="2">
+            <a href="{{ pr.url }}" target="{{ pr.target }}" rel="noopener" style="color: rgba(255,255,255,0.85); text-decoration: none; display: inline-flex; align-items: center; min-height: 44px;" style-hover="color: #FFFFFF;">{{ pr.label }}</a>
+          </sc-for>
+        </nav>
+        <span style="font-size: 13px; color: rgba(255,255,255,0.65); flex-basis: 100%;">© 2026 Hana Salah</span>
+      </div>
+    </footer>
+  </section>
+</main>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;animateFlow&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;showBuilding&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Work&quot;}}">
+const LINKS = window.SITE_LINKS || {}; // shared config: see site-config.js
+const EMAIL = LINKS.email || 'hana.salah.m.nasr@gmail.com'; // fallback keeps the contact path alive if site-config.js fails to load
+const MAILTO_MAX = 1800; // mail clients/browsers start truncating or refusing mailto: URLs somewhere above ~2000 characters
+const PHOTO = 'assets/images/hana-profile.jpg'; // TODO(Hana): path to professional portrait, e.g. 'images/hana.jpg'
+// TODO(Hana): project images. Sanitized or dummy data only for corporate work.
+const IMAGES = { 'bmw-sales-analytics': 'assets/images/bmw-project.jpeg', 'fitness-trainer': 'assets/images/fitness-trainer-2.jpg', 'airbnb-insights': '' };
+
+const SVC_IDS = ['svc-kpi-dashboards', 'svc-data-workflows', 'svc-automation', 'svc-prediction'];
+const LEGACY = { 'svc-performance-analytics': 0, 'svc-data-etl': 1, 'svc-machine-learning': 3 };
+const CS = 'case-study.html?id=';
+
+// ── Data that never changes: built once at load, not on every render. ──
+// One source for the degree wording (hero, About and the timeline all read it).
+const DEGREE_TITLE = 'B.Sc. in Artificial Intelligence, October 6 University, 2025';
+// "Working with me": TODO(Hana) fill these in. Each item (and the whole section) stays hidden while empty. (No price item on purpose: price is discussed per request.)
+const WORKING_WITH_ME = [
+  ['Starter offer', ''],       // TODO(Hana): e.g. what a first small project looks like
+  ['Typical timeline', ''],    // TODO(Hana)
+  ['What you receive', ''],    // TODO(Hana): what I hand over
+].map(p => ({ label: p[0], value: p[1] })).filter(p => p.value);
+const STAGE_DEFS = [
+  ['Raw data', 'Excel, CSVs, databases', 'Proven'],
+  ['Pipelines', 'Cleaning, validation, ETL', 'Proven'],
+  ['Analytics', 'KPIs and dashboards', 'Proven'],
+  ['Machine learning', 'Prediction and classification', 'Proven'],
+  ['Automation', 'Scheduled Python workflows', 'Proven'],
+  ['AI systems', 'LLM apps, RAG, agents', 'Building'],
+];
+const SVC_BASE = [
+  { discipline: 'Performance analytics', title: 'KPI dashboards and performance reporting',
+    problem: 'Performance data is spread around and nobody fully trusts the numbers.',
+    solution: 'We agree on what each KPI means, I prepare the data, and build dashboards and reports people actually check.',
+    deliverables: ['KPI definitions', 'Data preparation', 'Dashboards', 'Trend analysis', 'Recurring reports'],
+    fit: 'Sales and B2B teams, operations teams and managers who report on KPIs every week or month.',
+    tech: 'Python · SQL · Excel · Tableau', cta: 'Talk about your KPIs', area: 'KPI dashboards & performance reporting',
+    related: [['B2B performance analytics system', 'b2b-performance'], ['BMW sales & performance analytics', 'bmw-sales-analytics'], ['Airbnb market insights', 'airbnb-insights']] },
+  { discipline: 'Data cleaning & ETL', title: 'Clean up messy data workflows',
+    problem: 'Your data comes from different files and systems, in different formats, with gaps and duplicates.',
+    solution: 'A repeatable pipeline that cleans, validates and combines it into one dataset. Run it again next month and you get the same result.',
+    deliverables: ['Cleaning pipeline', 'Validation checks', 'One combined dataset', 'Reusable scripts', 'Documentation'],
+    fit: 'Teams working from several Excel or CSV exports, or a database nobody wants to touch.',
+    tech: 'Python · Pandas · SQL', cta: 'Fix my data workflow', area: 'Cleaning up a data workflow',
+    related: [['B2B performance analytics system', 'b2b-performance'], ['BMW sales & performance analytics', 'bmw-sales-analytics']] },
+  { discipline: 'Python automation', title: 'Automate recurring reports and tasks',
+    problem: 'Someone on your team repeats the same export, calculation and formatting every week or month.',
+    solution: 'I script the repeated steps: pulling the data, running the calculations, building the report and sending it. With error handling for when an input is late or missing.',
+    deliverables: ['Automation scripts', 'Scheduled runs', 'Excel, PDF or HTML reports', 'Email delivery', 'Error handling', 'Documentation'],
+    fit: 'Anyone who spends hours a month on a report that looks the same every time.',
+    tech: 'Python · Pandas · SQL · scheduling', cta: 'Automate a workflow', area: 'Automating a report or task',
+    related: [['Automated executive reporting (in progress)', 'executive-reporting'], ['B2B performance analytics system', 'b2b-performance']] },
+  { discipline: 'Data science & ML', title: 'Prediction and classification models',
+    problem: 'You have historical data and a question: what will sell, who is likely to leave, which category something belongs to.',
+    solution: 'I explore the data, build features, and train and test models sized to the question.',
+    deliverables: ['Exploratory analysis', 'Feature engineering', 'Model training & testing', 'Evaluation write-up', 'Prediction output'],
+    fit: 'Businesses with a few thousand rows or more of history and a specific question to answer.',
+    tech: 'scikit-learn · Pandas · Ridge · SVM · KNN', cta: 'Explore an ML idea', area: 'A prediction or classification model',
+    related: [['Real-time fitness trainer', 'fitness-trainer'], ['NBA player performance prediction', 'nba-prediction']] },
+].map((s, i) => ({ ...s, num: String(i + 1).padStart(2, '0'), id: SVC_IDS[i],
+  related: s.related.map(r => ({ label: r[0], href: CS + r[1] })) }));
+const PROBLEM_DEFS = [
+  ['Your weekly report takes hours, and most of it is copy-paste.', 2],
+  ['Your data lives in Excel files, CSV exports and a database, and none of it lines up.', 1],
+  ['Management wants a clear view of performance, but KPIs are still tracked by hand.', 0],
+  ['You have years of historical data and wonder what it could predict.', 3],
+  ['You want to try AI on your data, but with someone who understands the data first.', -1],
+];
+// In-progress work: shown as a "Building now" panel inside the Selected Work grid, right after BMW (not as full cards).
+const BUILDING_CASES = [
+  { id: 'executive-reporting', letter: 'C', category: 'Automation', title: 'Automated executive reporting' },
+  { id: 'nl-data-assistant', letter: 'D', category: 'LLM application', title: 'Natural-language data assistant' },
+].map(c => ({ ...c, href: CS + c.id }));
+
+const CARD_DEFS = [
+  { id: 'bmw-sales-analytics', building: false, category: 'Sales analytics · public data', title: 'BMW Sales & Performance Analytics',
+    summary: 'I used official BMW Group public reports. I built a pipeline that extracts, checks and stores the data, and a live dashboard.',
+    imgFit: 'contain', big: 'Dashboard from BMW public reports', chain: ['Python', 'Pandas', 'SQL', 'SQLite', 'Streamlit', 'Plotly'], bg: '#111111', fg: '#FFFFFF', accent: '#E8A9BD', frame: '0', chipStyle: 'solid', chipBorder: 'rgba(255,255,255,0.4)', linkText: 'Read the case study' },
+  { id: 'airbnb-insights', building: false, category: 'Business analytics', title: 'Airbnb market insights',
+    summary: 'What drives price, occupancy and revenue in a short-term rental market, and where demand concentrates on the map.',
+    big: 'Airbnb market analysis', chain: ['EDA', 'Geospatial', 'Tableau'], bg: '#F3EAEC', fg: '#3D0B20', accent: '#6E1535', frame: '0', chipStyle: 'solid', chipBorder: 'rgba(61,11,32,0.35)', linkText: 'Read the case study' },
+  { id: 'fitness-trainer', building: false, category: 'Computer vision + ML', title: 'Real-time fitness trainer',
+    summary: 'Live pose detection on 33 body keypoints with MediaPipe. A KNN classifier recognises the pose and gives exercise recommendations.',
+    big: 'Real-time pose detection app', chain: ['MediaPipe', 'Features', 'KNN'], metric: '98.2%', measuredOn: '', /* the number stays hidden until measuredOn is filled (see QUESTIONS.md) */ bg: '#6E1535', fg: '#FFFFFF', accent: '#F2C9D6', frame: '0', chipStyle: 'solid', chipBorder: 'rgba(255,255,255,0.4)', linkText: 'Read the case study' },
+];
+const MORE_CASES = [
+  // The metric is hidden until measuredOn is filled in (see QUESTIONS.md). The values stay here for later.
+  { id: 'nba-prediction', letter: 'F', category: 'Ridge Regression', title: 'NBA player performance prediction', metric: '+10%', measuredOn: '' },
+  { id: 'fake-news', letter: 'H', category: 'CLIP & ViLT', title: 'Multimodal fake news detection', metric: '85%', measuredOn: '' },
+  { id: 'alzheimers-detection', letter: 'I', category: 'SVM & Decision Tree', title: "Alzheimer's early detection", metric: '85%', measuredOn: '' },
+].map(c => ({ ...c, href: CS + c.id, metricNote: c.measuredOn ? ' · ' + c.metric + ' (measured on ' + c.measuredOn + ')' : '' }));
+
+const STEPS = [
+  ['Understand', 'What decision does this support, and who will use it?'],
+  ['Check the data', 'Where it lives, how clean it is, what’s missing.'],
+  ['Pick the approach', 'Sometimes a pipeline and a dashboard. Sometimes a model.'],
+  ['Build', 'In small pieces you can review as we go.'],
+  ['Validate', 'Against numbers you already trust, plus the awkward edge cases.'],
+  ['Hand over', 'Working code or dashboards, with documentation.'],
+].map((s, i) => ({ num: String(i + 1).padStart(2, '0'), title: s[0], desc: s[1] }));
+
+const CAP_PROVEN = { status: 'Proven', border: 'solid', lineColor: '#E6DEDF', bg: 'transparent', dotBg: '#6E1535', chipBg: '#F8F6F5', chipBorder: '#F8F6F5' };
+const CAPABILITIES = [
+  { ...CAP_PROVEN, title: 'Data & analytics', items: ['Python', 'Pandas', 'NumPy', 'Excel', 'KPI analysis', 'Exploratory analysis', 'Tableau', 'Matplotlib', 'Seaborn', 'Plotly', 'Streamlit'] },
+  { ...CAP_PROVEN, title: 'Data engineering', items: ['SQL', 'SQLite', 'ETL', 'Data cleaning', 'Transformation', 'Validation checks', 'Database workflows', 'pytest'] },
+  { ...CAP_PROVEN, title: 'Machine learning', items: ['scikit-learn', 'Feature engineering', 'Regression', 'Classification', 'Model evaluation', 'TensorFlow', 'PyTorch', 'MediaPipe', 'CLIP', 'ViLT'] },
+  { ...CAP_PROVEN, title: 'Automation', items: ['Python scripts', 'Automated reports', 'Excel/CSV processing', 'HTML · CSS · JavaScript'] },
+  { status: 'Building', border: 'dashed', lineColor: '#B66A82', bg: '#FBF3F5', dotBg: 'transparent', chipBg: 'transparent', chipBorder: '#B66A82', title: 'AI engineering', items: ['LangChain', 'LLM apps', 'RAG', 'Agents', 'Text-to-SQL'] },
+].map((g, i) => ({ ...g, num: String(i + 1).padStart(2, '0') }));
+
+const EVOLUTION = [['Analytics', 'Proven'], ['Automation', 'Proven'], ['Machine learning', 'Proven'], ['LLM applications', 'Building'], ['Agents', 'Building']]
+  .map(e => ({ name: e[0], status: e[1], border: e[1] === 'Proven' ? 'solid' : 'dashed', dotBg: e[1] === 'Proven' ? '#F2C9D6' : 'transparent' }));
+
+const TIMELINE = [
+  { date: 'Jan 2026 – now', role: 'Performance Senior Analyst, e& Business Egypt', org: '', note: 'B2B performance analysis, KPI tracking, ETL, dashboards and management reporting.' },
+  { date: 'Sep 2025 – May 2026', role: 'Business Development Manager', org: 'Italint', note: '' },
+  { date: '2025', role: DEGREE_TITLE, org: '', note: 'CGPA 3.53 / 4.0' },
+  { date: 'Earlier', role: 'Business development & team leadership', org: 'AIESEC in Egypt', note: '' },
+];
+
+const NAV_LINKS = [['Work', '#case-studies'], ['Services', '#services'], ['About', '#about'], ['Capabilities', '#capabilities'], ['Contact', '#contact']].map(l => ({ label: l[0], href: l[1] }));
+
+const AREAS = SVC_BASE.map(s => s.area).concat(['A small AI pilot', 'Not sure yet']);
+
+class Component extends DCLogic {
+  state = {
+    active: 0, svc: 0, open: -1, menuOpen: false, status: '', copyNote: '', canAnimate: false, playing: true,
+    narrow: typeof window !== 'undefined' && window.innerWidth < 880,
+    imgFail: {},
+    form: { area: 'KPI dashboards & performance reporting', workflow: '', bottleneck: '', outcome: '' },
+  };
+  menuRef = React.createRef();
+  toggleRef = React.createRef();
+  // Close the mobile menu; `refocus` returns keyboard focus to the hamburger button (WCAG 2.4.3).
+  closeOrOpen = () => { if (this.state.menuOpen) this.closeMenu(true); else this.setState({ menuOpen: true }); };
+  closeMenu = refocus => { this.refocus = refocus === true; this.setState({ menuOpen: false }); };
+
+  componentDidMount() {
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if ((this.props.animateFlow ?? true) && !reduce) {
+      // The control is only shown when there is an animation to pause (reduced-motion visitors get none).
+      this.setState({ canAnimate: true });
+      this.timer = setInterval(() => { if (!document.hidden && this.state.playing) this.setState(s => ({ active: (s.active + 1) % 6 })); }, 1800);
+    }
+    this.onResize = () => {
+      const narrow = window.innerWidth < 880;
+      if (narrow !== this.state.narrow) this.setState({ narrow, menuOpen: false });
+    };
+    window.addEventListener('resize', this.onResize, { passive: true });
+    this.onHash = () => {
+      const h = location.hash.slice(1);
+      const i = SVC_IDS.indexOf(h) >= 0 ? SVC_IDS.indexOf(h) : (LEGACY[h] ?? -1);
+      if (i >= 0) this.setState({ svc: i, open: i });
+    };
+    this.onHash();
+    window.addEventListener('hashchange', this.onHash);
+    this.onKey = e => { if (e.key === 'Escape' && this.state.menuOpen) this.closeMenu(true); };
+    window.addEventListener('keydown', this.onKey);
+    if (!reduce && 'IntersectionObserver' in window) {
+      this.io = new IntersectionObserver(entries => entries.forEach(e => {
+        if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'none'; this.io.unobserve(e.target); }
+      }), { rootMargin: '0px 0px -8% 0px' });
+      this.prepReveal();
+      this.mo = new MutationObserver(() => this.prepReveal());
+      this.mo.observe(document.querySelector('main') || document.body, { childList: true, subtree: true });
+    }
+  }
+  componentDidUpdate() {
+    // support.js passes only prevProps here (not prevState), so remember the previous menu state ourselves.
+    const open = this.state.menuOpen, was = this.wasOpen;
+    this.wasOpen = open;
+    if (open && !was && this.menuRef.current) { const a = this.menuRef.current.querySelector('a'); a && a.focus(); }
+    if (!open && was && this.refocus) { this.refocus = false; setTimeout(() => this.toggleRef.current && this.toggleRef.current.focus({ preventScroll: true }), 0); } // after the browser's own hash-jump focus handling
+  }
+  prepReveal() {
+    document.querySelectorAll('[data-reveal]:not([data-rv])').forEach(el => {
+      el.setAttribute('data-rv', '1');
+      if (el.getBoundingClientRect().top < window.innerHeight) return;
+      el.style.opacity = '0'; el.style.transform = 'translateY(16px)';
+      el.style.transition = 'opacity 800ms cubic-bezier(.2,.7,.2,1), transform 800ms cubic-bezier(.2,.7,.2,1)';
+      this.io.observe(el);
+    });
+  }
+  componentWillUnmount() {
+    clearInterval(this.timer);
+    window.removeEventListener('resize', this.onResize);
+    window.removeEventListener('hashchange', this.onHash);
+    window.removeEventListener('keydown', this.onKey);
+    this.io && this.io.disconnect(); this.mo && this.mo.disconnect();
+  }
+
+  setField(k) { return e => { const v = e.target.value; this.setState(s => ({ form: { ...s.form, [k]: v } })); }; }
+
+  renderVals() {
+    const { active, form, svc, open, narrow, menuOpen, imgFail } = this.state;
+    const markFail = k => () => this.setState(st => (st.imgFail[k] ? null : { imgFail: { ...st.imgFail, [k]: true } }));
+
+    const stages = STAGE_DEFS.map((d, i) => {
+      const proven = d[2] === 'Proven', on = i === active;
+      return { name: d[0], desc: d[1], status: d[2], tagBorder: proven ? 'solid' : 'dashed',
+        dotBg: on ? '#FFFFFF' : (i <= active && proven ? '#F2C9D6' : 'transparent'), dotBorder: proven ? 'solid' : 'dashed',
+        glow: on ? '0 0 0 6px rgba(255,255,255,0.14)' : 'none', opacity: on ? 1 : 0.7, shift: on ? '6px' : '0px' };
+    });
+
+    const pickSvc = i => () => this.setState({ svc: i, open: i });
+    const svcData = SVC_BASE.map(s => ({ ...s, pick: () => this.setState(st => ({ form: { ...st.form, area: s.area } })) }));
+
+    const keyNav = i => e => {
+      const k = e.key; let n = -1;
+      if (k === 'ArrowDown' || k === 'ArrowRight') n = (i + 1) % 4;
+      if (k === 'ArrowUp' || k === 'ArrowLeft') n = (i + 3) % 4;
+      if (n < 0 || narrow) return;
+      e.preventDefault(); this.setState({ svc: n });
+      const el = document.getElementById(SVC_IDS[n]); el && el.focus();
+    };
+    const services = svcData.map((s, i) => {
+      const on = narrow ? open === i : svc === i;
+      return { ...s, select: narrow ? () => this.setState({ open: open === i ? -1 : i }) : pickSvc(i), keyNav: keyNav(i),
+        role: narrow ? undefined : 'tab', ariaSelected: narrow ? undefined : String(on), ariaExpanded: narrow ? String(on) : undefined,
+        controls: narrow ? 'svc-panel-' + i : 'svc-panel', panelId: 'svc-panel-' + i, inline: narrow && on,
+        bg: on ? '#6E1535' : 'transparent', hoverBg: on ? '#6E1535' : 'rgba(255,255,255,0.06)',
+        numColor: on ? '#FFFFFF' : '#E8A9BD', discColor: on ? '#F2C9D6' : 'rgba(255,255,255,0.65)',
+        indicator: narrow ? (on ? '−' : '+') : (on ? '→' : '') };
+    });
+
+    const problems = PROBLEM_DEFS.map((p, i) => ({ num: String(i + 1).padStart(2, '0'), text: p[0],
+      service: p[1] >= 0 ? svcData[p[1]].title : 'Small AI pilots',
+      href: p[1] >= 0 ? '#' + SVC_IDS[p[1]] : '#ai-automation', pick: p[1] >= 0 ? pickSvc(p[1]) : undefined }));
+
+    const showBuilding = this.props.showBuilding ?? true;
+    const cardList = CARD_DEFS
+     .map(c => ({ ...c, href: CS + c.id, imgFit: c.imgFit || 'cover', img: (!imgFail[c.id] && IMAGES[c.id]) || '', noImg: imgFail[c.id] || !IMAGES[c.id], onImgError: markFail(c.id), imgAlt: c.title + ' screenshot',
+       isCard: true, isPanel: false, letter: { 'bmw-sales-analytics': 'B', 'airbnb-insights': 'E', 'fitness-trainer': 'G' }[c.id], metric: c.measuredOn ? (c.metric || '') : '', metricLabel: c.measuredOn ? 'measured on ' + c.measuredOn : '' }));
+    // The "Building now" panel sits in the grid right after the first (BMW) card.
+    const panel = { isCard: false, isPanel: true, href: '', bg: '', fg: '', frame: '', img: '', noImg: false };
+    const cards = showBuilding ? [cardList[0], panel, ...cardList.slice(1)] : cardList;
+
+
+
+
+
+
+    const profiles = [
+      ['Email', 'mailto:' + EMAIL, EMAIL],
+      ['LinkedIn', LINKS.linkedin, (LINKS.linkedin || '').replace(/^https?:\/\/(www\.)?/, '')],
+      ['Upwork', LINKS.upwork, 'Hire me on Upwork'],
+      ['Mostaql', LINKS.mostaql, 'Hire me on Mostaql'],
+      ['GitHub', LINKS.github, (LINKS.github || '').replace(/^https?:\/\/(www\.)?/, '')],
+    ].filter(p => p[1]).map(p => ({ label: p[0], url: p[1], display: p[2], target: p[1].startsWith('mailto:') ? undefined : '_blank' }));
+
+
+    return {
+      wide: !narrow, narrow, menuOpen, menuRef: this.menuRef, navLinks: NAV_LINKS,
+      menuExpanded: String(menuOpen), menuLabel: menuOpen ? 'Close menu' : 'Open menu',
+      bar1: menuOpen ? 'translateY(7px) rotate(45deg)' : 'none', bar2: menuOpen ? 0 : 1, bar3: menuOpen ? 'translateY(-7px) rotate(-45deg)' : 'none',
+      toggleRef: this.toggleRef, toggleMenu: () => this.closeOrOpen(), closeAndFocus: () => this.closeMenu(true),
+      // Focus left the open menu for somewhere else (not the hamburger): close it, but don't steal focus back.
+      menuBlur: e => { const n = e.relatedTarget; if (this.state.menuOpen && !(n && (e.currentTarget.contains(n) || n === this.toggleRef.current))) this.closeMenu(false); },
+      menuKey: e => { if (e.key === 'Escape') this.closeMenu(true); },
+      canAnimate: this.state.canAnimate, playing: this.state.playing, pausedPressed: String(!this.state.playing), playLabel: this.state.playing ? 'Pause' : 'Play', playIcon: this.state.playing ? '❚❚' : '▶',
+      togglePlay: () => this.setState(st => ({ playing: !st.playing })),
+      stages, activeLabel: String(active + 1).padStart(2, '0') + ' / 06', flowHeight: 'calc((100% - 60px) * ' + (active / 5) + ')',
+      stickyPos: narrow ? 'static' : 'sticky', listRole: narrow ? undefined : 'tablist',
+      problems, services, sel: services[svc], cards, buildingCases: BUILDING_CASES, moreCases: MORE_CASES, steps: STEPS, capabilities: CAPABILITIES, evolution: EVOLUTION, timeline: TIMELINE, profiles, areas: AREAS, form,
+      featNoImg: true, /* the e& card is text-only on purpose: no image, ever */ featAspect: narrow ? '4 / 3' : '21 / 9',
+      degree: DEGREE_TITLE, showWwm: WORKING_WITH_ME.length > 0, wwm: WORKING_WITH_ME, contactNum: WORKING_WITH_ME.length ? '09' : '08',
+      photo: imgFail.photo ? '' : PHOTO, noPhoto: imgFail.photo || !PHOTO, onPhotoError: markFail('photo'), cvUrl: LINKS.cv, linkedinUrl: LINKS.linkedin, hasAboutLinks: !!(LINKS.cv || LINKS.linkedin), showBuilding,
+      setArea: this.setField('area'), setWorkflow: this.setField('workflow'), setBottleneck: this.setField('bottleneck'), setOutcome: this.setField('outcome'),
+      email: EMAIL, mailtoHref: 'mailto:' + EMAIL, copyNote: this.state.copyNote,
+      copyEmail: () => {
+        const done = ok => this.setState({ copyNote: ok ? 'Email copied' : 'Couldn’t copy automatically. Please select the address above and copy it.' });
+        window.SITE_UTILS ? window.SITE_UTILS.copyText(EMAIL).then(done) : done(false);
+      },
+      formNote: {
+        empty: 'Please fill in at least one of the three boxes so I know what you need.',
+        sent: 'Your email app should open with the brief filled in. If it didn’t, email me directly at ' + EMAIL + '.',
+        trimmed: 'Your email app should open with the brief filled in, but it was long, so I shortened it to fit an email link. If it didn’t open, or you want to add the rest, email me directly at ' + EMAIL + '.',
+      }[this.state.status] || 'This opens your email app with the brief filled in.',
+      submit: e => {
+        e.preventDefault();
+        const f = this.state.form;
+        if (![f.workflow, f.bottleneck, f.outcome].some(v => v.trim())) {
+          this.setState({ status: 'empty' });
+          const t = document.getElementById('brief-workflow'); t && t.focus();
+          return;
+        }
+        let body = `What I need help with: ${f.area}
+
+How it works today:
+${f.workflow}
+
+Where it gets stuck:
+${f.bottleneck}
+
+What I'd like instead:
+${f.outcome}
+`;
+        const url = b => 'mailto:' + EMAIL + '?subject=' + encodeURIComponent('Project enquiry: ' + f.area) + '&body=' + encodeURIComponent(b);
+        let trimmed = false;
+        while (url(body).length > MAILTO_MAX && body.length > 0) { body = body.slice(0, Math.floor(body.length * 0.9)); trimmed = true; }
+        window.location.href = url(body);
+        this.setState({ status: trimmed ? 'trimmed' : 'sent' });
+      },
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Case study | Hana Salah</title>
+<meta name="description" content="A case study by Hana Salah: the problem, the data, the approach and the result.">
+<meta property="og:title" content="Case study | Hana Salah">
+<meta property="og:description" content="A case study by Hana Salah: the problem, the data, the approach and the result.">
+<meta property="og:type" content="article">
+<!-- TODO(Hana): when the final site URL is known, add absolute tags here:
+     <meta property="og:url" content="https://YOUR-DOMAIN/">  and  <meta property="og:image" content="https://YOUR-DOMAIN/assets/og-image.png">
+     (assets/og-image.png already exists; social previews need the absolute URL). Left out on purpose until then. -->
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face { font-family: 'Manrope'; font-style: normal; font-weight: 400 800; font-display: swap; src: url(assets/fonts/manrope-latin.woff2) format('woff2'); }
+@font-face { font-family: 'Instrument Serif'; font-style: normal; font-weight: 400; font-display: swap; src: url(assets/fonts/instrument-serif-regular.woff2) format('woff2'); }
+@font-face { font-family: 'Instrument Serif'; font-style: italic; font-weight: 400; font-display: swap; src: url(assets/fonts/instrument-serif-italic.woff2) format('woff2'); }
+</style>
+<script src="./site-config.js"></script>
+<script src="./resources.js"></script>
+<script src="./site-utils.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<noscript>
+<div style="font-family: system-ui, sans-serif; max-width: 640px; margin: 48px auto; padding: 0 20px; line-height: 1.6;">
+<h1>Hana Salah</h1>
+<p>Data analytics, automation and machine learning. This site needs JavaScript to display my work.</p>
+<p>Email me at <a href="mailto:hana.salah.m.nasr@gmail.com">hana.salah.m.nasr@gmail.com</a>.</p>
+</div>
+</noscript>
+<x-dc>
+<helmet>
+<style>
+html { scroll-behavior: smooth; scroll-padding-top: 96px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition-duration: 0.01ms !important; } }
+body { margin: 0; background: #FFFFFF; color: #111111; font-family: 'Manrope', system-ui, sans-serif; text-wrap: pretty; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+a { color: #6E1535; }
+a:hover { color: #3D0B20; }
+::selection { background: #6E1535; color: #FFFFFF; }
+:focus-visible { outline: 2px solid #B66A82; outline-offset: 3px; }
+img { max-width: 100%; display: block; }
+</style>
+</helmet>
+
+<a href="#main" style="position: absolute; left: -9999px; top: 8px; z-index: 50; padding: 10px 14px; background: #111111; color: #FFFFFF;" style-focus="left: 8px;">Skip to content</a>
+
+<header style="position: sticky; top: 0; z-index: 30; background: rgba(255,255,255,0.96); backdrop-filter: blur(10px); border-bottom: 1px solid #EEE7E8;">
+  <nav aria-label="Primary" style="max-width: 1280px; margin: 0 auto; padding: 12px clamp(20px, 5vw, 64px); display: flex; align-items: center; gap: 12px 32px; min-height: 48px;">
+    <a href="index.html" style="margin-right: auto; display: flex; align-items: baseline; gap: 8px; text-decoration: none; color: #111111; min-height: 44px; box-sizing: border-box; align-items: center;">
+      <span style="font-weight: 800; font-size: 19px; letter-spacing: -0.02em;">Hana Salah</span>
+      <span aria-hidden="true" style="width: 7px; height: 7px; background: #6E1535; border-radius: 50%;"></span>
+    </a>
+    <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+      <div style="display: flex; gap: 26px; font-size: 14.5px; font-weight: 500;">
+        <sc-for list="{{ navLinks }}" as="l" hint-placeholder-count="4">
+          <a href="{{ l.href }}" style="color: #111111; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px; padding: 0; background-image: linear-gradient(#6E1535, #6E1535); background-repeat: no-repeat; background-position: 0 calc(50% + 14px); background-size: 0% 1.5px; transition: background-size 300ms ease, color 300ms ease;" style-hover="background-size: 100% 1.5px; color: #6E1535;">{{ l.label }}</a>
+        </sc-for>
+      </div>
+      <a href="#cta" style="white-space: nowrap; flex: none; display: inline-flex; align-items: center; gap: 10px; padding: 12px 18px; min-height: 44px; box-sizing: border-box; background: #6E1535; color: #FFFFFF; text-decoration: none; font-size: 14px; font-weight: 600; transition: background 250ms ease, gap 250ms ease;" style-hover="background: #111111; color: #FFFFFF; gap: 14px;">Discuss a project <span aria-hidden="true">→</span></a>
+    </sc-if>
+    <sc-if value="{{ narrow }}" hint-placeholder-val="{{ false }}">
+      <button type="button" aria-expanded="{{ menuExpanded }}" aria-controls="mobile-menu" aria-label="{{ menuLabel }}" ref="{{ toggleRef }}" onClick="{{ toggleMenu }}" style="all: unset; cursor: pointer; width: 48px; height: 48px; display: grid; place-items: center; margin-right: -12px;">
+        <span aria-hidden="true" style="display: flex; flex-direction: column; gap: 5px; width: 22px;">
+          <span style="height: 2px; background: #111111; transform: {{ bar1 }}; transition: transform 250ms ease;"></span>
+          <span style="height: 2px; background: #111111; opacity: {{ bar2 }}; transition: opacity 200ms ease;"></span>
+          <span style="height: 2px; background: #111111; transform: {{ bar3 }}; transition: transform 250ms ease;"></span>
+        </span>
+      </button>
+    </sc-if>
+  </nav>
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div id="mobile-menu" ref="{{ menuRef }}" onKeyDown="{{ menuKey }}" onBlur="{{ menuBlur }}" style="position: absolute; left: 0; right: 0; top: 100%; background: #FFFFFF; border-bottom: 1px solid #E6DEDF; box-shadow: 0 18px 40px rgba(17,17,17,0.08); padding: 8px 20px 24px; display: flex; flex-direction: column; max-height: calc(100vh - 72px); overflow-y: auto; box-sizing: border-box;">
+      <sc-for list="{{ navLinks }}" as="l" hint-placeholder-count="4">
+        <a href="{{ l.href }}" onClick="{{ closeAndFocus }}" style="display: block; padding: 14px 0; border-bottom: 1px solid #EEE7E8; color: #111111; text-decoration: none; font-size: 19px; font-weight: 600;">{{ l.label }}</a>
+      </sc-for>
+      <a href="#cta" onClick="{{ closeAndFocus }}" style="margin-top: 18px; display: flex; justify-content: center; align-items: center; gap: 10px; padding: 16px 20px; background: #6E1535; color: #FFFFFF; text-decoration: none; font-size: 16px; font-weight: 700;">Discuss a project <span aria-hidden="true">→</span></a>
+    </div>
+  </sc-if>
+  <div aria-hidden="true" style="height: 2px; background: #6E1535; width: {{ progress }}; transition: width 80ms linear;"></div>
+</header>
+
+<main id="main">
+  <section data-screen-label="Case study intro" style="background: #6E1535; color: #FFFFFF;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: clamp(40px, 7vw, 104px) clamp(20px, 5vw, 64px) clamp(40px, 6vw, 80px); display: flex; flex-direction: column; gap: 24px;">
+      <div style="display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #F2C9D6;">
+        <a href="index.html#case-studies" style="color: #FFFFFF; text-decoration: none; padding: 6px 0;" style-hover="color: #F2C9D6;">← All work</a>
+        <span aria-hidden="true">/</span>
+        <span>{{ c.category }}</span>
+        <sc-if value="{{ c.status }}" hint-placeholder-val="{{ false }}">
+          <span style="padding: 4px 9px; border: 1px dashed rgba(255,255,255,0.7); color: #FFFFFF;">{{ c.status }}</span>
+        </sc-if>
+      </div>
+      <div style="display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0 clamp(14px, 3vw, 40px); align-items: start;">
+        <span aria-hidden="true" style="font-family: 'Instrument Serif', serif; font-style: italic; font-size: clamp(64px, 10vw, 150px); line-height: 0.8; color: #F2C9D6;">{{ c.letter }}</span>
+        <div style="display: flex; flex-direction: column; gap: 20px; min-width: 0;">
+          <h1 style="margin: 0; font-weight: 700; font-size: clamp(34px, 5.8vw, 84px); line-height: 1; letter-spacing: -0.04em; max-width: 16ch; text-wrap: balance; overflow-wrap: break-word;">{{ c.title }}</h1>
+          <p style="margin: 0; max-width: 54ch; font-size: clamp(17px, 1.6vw, 21px); line-height: 1.5; color: rgba(255,255,255,0.9);">{{ c.oneLine }}</p>
+          <sc-if value="{{ c.intro }}" hint-placeholder-val="{{ false }}">
+            <p style="margin: 0; max-width: 62ch; font-size: 16.5px; line-height: 1.65; color: rgba(255,255,255,0.86);">{{ c.intro }}</p>
+          </sc-if>
+          <sc-if value="{{ heroLinks.length }}" hint-placeholder-val="{{ false }}">
+            <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+              <sc-for list="{{ heroLinks }}" as="l" hint-placeholder-count="2">
+                <a href="{{ l.href }}" target="_blank" rel="noopener" aria-label="{{ l.aria }}" style="display: inline-flex; align-items: center; gap: 10px; min-height: 48px; box-sizing: border-box; padding: 0 22px; background: {{ l.bg }}; color: {{ l.fg }}; border: 1px solid {{ l.border }}; text-decoration: none; font-size: 14px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;" style-hover="background: #111111; color: #FFFFFF; border-color: #111111;">{{ l.label }} <span aria-hidden="true">↗</span></a>
+              </sc-for>
+            </div>
+          </sc-if>
+          <sc-if value="{{ c.notice }}" hint-placeholder-val="{{ false }}">
+            <p style="margin: 0; max-width: 70ch; padding: 14px 18px; border: 1px dashed rgba(255,255,255,0.6); font-size: 15px; line-height: 1.55; color: #FFFFFF;">{{ c.notice }}</p>
+          </sc-if>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <sc-if value="{{ found }}" hint-placeholder-val="{{ true }}">
+  <section aria-labelledby="summary-h" data-screen-label="Case study summary" style="background: #F8F6F5;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: clamp(36px, 5vw, 64px) clamp(20px, 5vw, 64px); display: flex; flex-direction: column; gap: 28px;">
+      <h2 id="summary-h" style="margin: 0; font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #6E1535;">At a glance</h2>
+      <dl style="margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: 0;">
+        <sc-for list="{{ summary }}" as="s" hint-placeholder-count="4">
+          <div style="display: flex; flex-direction: column; gap: 10px; padding: 20px 24px 22px 0; border-top: 2px solid {{ s.line }};">
+            <dt style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #6E1535;">{{ s.k }}</dt>
+            <dd style="margin: 0; font-size: 16.5px; line-height: 1.5; color: #111111;">{{ s.v }}</dd>
+          </div>
+        </sc-for>
+      </dl>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center;">
+        <a href="#cta" style="white-space: nowrap; display: inline-flex; align-items: center; gap: 12px; padding: 15px 22px; background: #6E1535; color: #FFFFFF; text-decoration: none; font-size: 15px; font-weight: 700; transition: gap 250ms ease, background 250ms ease;" style-hover="gap: 18px; background: #111111; color: #FFFFFF;">Discuss a similar project <span aria-hidden="true">→</span></a>
+        <a href="{{ c.serviceHref }}" style="font-size: 15px; font-weight: 600; padding: 8px 0; text-underline-offset: 5px;">Related service: {{ c.serviceLabel }}</a>
+      </div>
+    </div>
+  </section>
+
+  <div style="max-width: 1280px; margin: 0 auto; padding: clamp(48px, 7vw, 104px) clamp(20px, 5vw, 64px); display: grid; grid-template-columns: {{ layoutCols }}; gap: 40px clamp(40px, 6vw, 96px); align-items: start;">
+    <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+      <nav aria-label="On this page" style="position: sticky; top: 100px; display: flex; flex-direction: column; gap: 2px; font-size: 14.5px;">
+        <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #6E1535; margin-bottom: 10px;">Technical detail</span>
+        <sc-for list="{{ toc }}" as="t" hint-placeholder-count="9">
+          <a href="{{ t.href }}" aria-current="{{ t.current }}" style="display: flex; gap: 12px; align-items: baseline; padding: 5px 0; color: {{ t.color }}; font-weight: {{ t.weight }}; text-decoration: none; transition: color 250ms ease;" style-hover="color: #6E1535;"><span aria-hidden="true" style="font-family: 'Instrument Serif', serif; font-style: italic; font-size: 16px; color: #6E1535; min-width: 22px;">{{ t.num }}</span>{{ t.title }}</a>
+        </sc-for>
+      </nav>
+    </sc-if>
+
+    <article style="min-width: 0; display: flex; flex-direction: column; gap: clamp(44px, 6vw, 80px);">
+      <sc-for list="{{ blocks }}" as="b" hint-placeholder-count="6">
+        <section id="{{ b.id }}" aria-labelledby="{{ b.hid }}" style="display: flex; flex-direction: column; gap: 18px;">
+          <div style="display: flex; align-items: baseline; gap: 14px;">
+            <span aria-hidden="true" style="font-family: 'Instrument Serif', serif; font-style: italic; font-size: 26px; line-height: 1; color: #6E1535;">{{ b.num }}</span>
+            <h2 id="{{ b.hid }}" style="margin: 0; font-weight: 700; font-size: clamp(24px, 2.8vw, 36px); line-height: 1.12; letter-spacing: -0.03em;">{{ b.title }}</h2>
+          </div>
+          <sc-if value="{{ b.isBody }}" hint-placeholder-val="{{ true }}">
+            <sc-for list="{{ b.paras }}" as="p" hint-placeholder-count="1">
+              <p style="margin: 0; font-size: 17.5px; line-height: 1.7; max-width: 66ch; color: #2A2427;">{{ p }}</p>
+            </sc-for>
+          </sc-if>
+          <sc-if value="{{ b.hasList }}" hint-placeholder-val="{{ false }}">
+            <ol style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; max-width: 72ch; border-top: 1px solid #111111;">
+              <sc-for list="{{ b.list }}" as="li" hint-placeholder-count="3">
+                <li style="display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: 12px; padding: 15px 0; border-bottom: 1px solid #E6DEDF; font-size: 16.5px; line-height: 1.6;"><span aria-hidden="true" style="font-family: 'Instrument Serif', serif; font-style: italic; font-size: 20px; line-height: 1.3; color: #6E1535;">{{ li.n }}</span><span>{{ li.t }}</span></li>
+              </sc-for>
+            </ol>
+          </sc-if>
+          <sc-if value="{{ b.isArch }}" hint-placeholder-val="{{ false }}">
+            <figure style="margin: 6px 0 0; padding: clamp(18px, 3vw, 36px); background: #F8F6F5;">
+              <ol aria-label="Architecture, in order" style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: {{ archCols }}; gap: 12px;">
+                <sc-for list="{{ arch }}" as="n" hint-placeholder-count="5">
+                  <li style="display: flex; flex-direction: column; min-width: 0;">
+                    <span style="padding: 15px 14px; border: 1px {{ n.border }} {{ n.lineColor }}; display: flex; flex-direction: column; gap: 5px; flex: 1; min-width: 0; background: {{ n.bg }}; color: {{ n.fg }};">
+                      <span style="display: flex; justify-content: space-between; gap: 8px; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; opacity: 0.75;"><span>{{ n.num }}<sc-if value="{{ n.planned }}" hint-placeholder-val="{{ false }}"> · PLANNED</sc-if></span><span aria-hidden="true">{{ n.arrow }}</span></span>
+                      <span style="font-weight: 700; font-size: 16.5px; line-height: 1.2; overflow-wrap: anywhere;">{{ n.name }}</span>
+                      <span style="font-size: 14px; line-height: 1.45; opacity: 0.85; overflow-wrap: anywhere;">{{ n.desc }}</span>
+                    </span>
+                  </li>
+                </sc-for>
+              </ol>
+              <figcaption style="margin-top: 18px; font-size: 14px; color: #4A4246;">{{ archCaption }}</figcaption>
+            </figure>
+          </sc-if>
+          <sc-if value="{{ b.isTools }}" hint-placeholder-val="{{ false }}">
+            <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 8px;">
+              <sc-for list="{{ c.tools }}" as="t" hint-placeholder-count="4">
+                <li style="font-size: 15px; font-weight: 500; padding: 8px 14px; background: #F8F6F5;">{{ t }}</li>
+              </sc-for>
+            </ul>
+          </sc-if>
+          <sc-if value="{{ b.isShots }}" hint-placeholder-val="{{ false }}">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 28px;">
+              <sc-for list="{{ shots }}" as="s" hint-placeholder-count="2">
+                <figure style="margin: 0; display: flex; flex-direction: column; gap: 10px;">
+                  <img src="{{ s.src }}" alt="{{ s.caption }}" onError="{{ s.onFail }}" loading="lazy" style="width: 100%; aspect-ratio: {{ s.ratio }}; object-fit: {{ s.fit }}; background: #F3EAEC;">
+                  <figcaption style="font-size: 14px; color: #4A4246;">{{ s.caption }}</figcaption>
+                </figure>
+              </sc-for>
+            </div>
+          </sc-if>
+          <sc-if value="{{ b.hasParts }}" hint-placeholder-val="{{ false }}">
+            <sc-for list="{{ b.parts }}" as="pt" hint-placeholder-count="3">
+              <sc-if value="{{ pt.isP }}" hint-placeholder-val="{{ false }}">
+                <p style="margin: 0; font-size: 17.5px; line-height: 1.7; max-width: 66ch; color: #2A2427;">{{ pt.text }}</p>
+              </sc-if>
+              <sc-if value="{{ pt.isList }}" hint-placeholder-val="{{ false }}">
+                <ol style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; max-width: 72ch; border-top: 1px solid #111111;">
+                  <sc-for list="{{ pt.list }}" as="li" hint-placeholder-count="3">
+                    <li style="display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: 12px; padding: 15px 0; border-bottom: 1px solid #E6DEDF; font-size: 16.5px; line-height: 1.6;"><span aria-hidden="true" style="font-family: 'Instrument Serif', serif; font-style: italic; font-size: 20px; line-height: 1.3; color: #6E1535;">{{ li.n }}</span><span style="overflow-wrap: anywhere;">{{ li.t }}</span></li>
+                  </sc-for>
+                </ol>
+              </sc-if>
+              <sc-if value="{{ pt.isCards }}" hint-placeholder-val="{{ false }}">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 16px;">
+                  <sc-for list="{{ pt.cards }}" as="cd" hint-placeholder-count="3">
+                    <div style="display: flex; flex-direction: column; gap: 10px; padding: 20px 20px 22px; background: #F8F6F5; border-top: 2px solid #6E1535; min-width: 0;">
+                      <h3 style="margin: 0; font-size: clamp(18px, 1.8vw, 22px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; overflow-wrap: anywhere;">{{ cd.h }}</h3>
+                      <sc-if value="{{ cd.p }}" hint-placeholder-val="{{ false }}"><p style="margin: 0; font-size: 15.5px; line-height: 1.55; color: #3E373A;">{{ cd.p }}</p></sc-if>
+                      <sc-if value="{{ cd.hasItems }}" hint-placeholder-val="{{ false }}">
+                        <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; font-size: 15px; line-height: 1.5;">
+                          <sc-for list="{{ cd.items }}" as="it" hint-placeholder-count="4"><li style="display: flex; gap: 10px; overflow-wrap: anywhere;"><span aria-hidden="true" style="color: #6E1535;">·</span><span>{{ it }}</span></li></sc-for>
+                        </ul>
+                      </sc-if>
+                    </div>
+                  </sc-for>
+                </div>
+              </sc-if>
+              <sc-if value="{{ pt.isLinks }}" hint-placeholder-val="{{ false }}">
+                <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+                  <sc-for list="{{ pt.links }}" as="lk" hint-placeholder-count="2">
+                    <a href="{{ lk.href }}" target="_blank" rel="noopener" aria-label="{{ lk.aria }}" style="display: inline-flex; align-items: center; gap: 10px; min-height: 48px; box-sizing: border-box; padding: 0 22px; background: {{ lk.pbg }}; color: {{ lk.pfg }}; border: 1px solid #6E1535; text-decoration: none; font-size: 14px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;" style-hover="background: #111111; color: #FFFFFF; border-color: #111111;">{{ lk.label }} <span aria-hidden="true">↗</span></a>
+                  </sc-for>
+                </div>
+              </sc-if>
+            </sc-for>
+          </sc-if>
+        </section>
+      </sc-for>
+    </article>
+  </div>
+  <!-- Optional cross-link: stays hidden until SITE_LINKS.bmwCaseStudy holds a URL (see site-config.js). Skills link only. -->
+  <sc-if value="{{ crossLink }}" hint-placeholder-val="{{ false }}">
+    <aside aria-label="Related public project" style="max-width: 1280px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 64px) clamp(48px, 7vw, 104px); box-sizing: border-box;">
+      <p style="margin: 0; padding: 20px 24px; border: 1px solid #D9CFD1; background: #F8F6F5; font-size: 16.5px; line-height: 1.6; max-width: 70ch;">Looking for a public example of my dashboard and analytics workflow? <a href="{{ crossLink }}" style="font-weight: 600; text-underline-offset: 4px;">See my BMW sales analytics project.</a></p>
+    </aside>
+  </sc-if>
+  </sc-if>
+
+  <section id="cta" aria-labelledby="cta-h" data-screen-label="Case study CTA" style="background: #111111; color: #FFFFFF;">
+    <sc-if value="{{ found }}" hint-placeholder-val="{{ true }}">
+    <div style="max-width: 1280px; margin: 0 auto; padding: clamp(56px, 9vw, 128px) clamp(20px, 5vw, 64px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr)); gap: 28px clamp(40px, 6vw, 96px); align-items: end;">
+      <div style="display: flex; flex-direction: column; gap: 18px;">
+        <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #E8A9BD;">Next step</span>
+        <h2 id="cta-h" style="margin: 0; font-weight: 700; font-size: clamp(32px, 4.6vw, 64px); line-height: 1.02; letter-spacing: -0.04em;">{{ c.ctaTitle }}</h2>
+        <p style="margin: 0; max-width: 46ch; font-size: 17px; line-height: 1.6; color: rgba(255,255,255,0.84);">Send me a short note on how it works today and where it gets stuck. I'll tell you how I'd approach it.</p>
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <span style="font-size: 14px; color: rgba(255,255,255,0.7);">Or write to me directly:</span>
+          <span style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px 16px;">
+            <a href="{{ mailtoHref }}" style="color: #FFFFFF; font-size: 18px; font-weight: 600; text-underline-offset: 4px; text-decoration-color: #B66A82; overflow-wrap: anywhere; min-height: 44px; display: inline-flex; align-items: center;" style-hover="color: #E8A9BD;">{{ email }}</a>
+            <button type="button" onClick="{{ copyEmail }}" style="all: unset; box-sizing: border-box; cursor: pointer; display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border: 1px solid rgba(255,255,255,0.5); color: #FFFFFF; font-size: 14px; font-weight: 600;" style-hover="background: rgba(255,255,255,0.08); border-color: #FFFFFF;" style-focus="outline: 2px solid #E8A9BD; outline-offset: 3px;">Copy email</button>
+          </span>
+          <span role="status" style="font-size: 14px; line-height: 1.5; color: rgba(255,255,255,0.72); min-height: 21px;">{{ copyNote }}</span>
+        </div>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+        <a href="{{ mailto }}" style="white-space: nowrap; display: inline-flex; align-items: center; gap: 12px; padding: 16px 26px; background: #6E1535; color: #FFFFFF; text-decoration: none; font-size: 15.5px; font-weight: 700; transition: gap 250ms ease, background 250ms ease;" style-hover="gap: 18px; background: #8A1D44; color: #FFFFFF;">Discuss a project <span aria-hidden="true">→</span></a>
+        <a href="{{ c.serviceHref }}" style="display: inline-flex; align-items: center; padding: 15px 23px; border: 1px solid rgba(255,255,255,0.5); color: #FFFFFF; text-decoration: none; font-size: 15.5px; font-weight: 600; transition: background 250ms ease, border-color 250ms ease;" style-hover="background: rgba(255,255,255,0.08); border-color: #FFFFFF; color: #FFFFFF;">See the service</a>
+      </div>
+    </div>
+
+    <nav aria-label="More case studies" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); border-top: 1px solid rgba(255,255,255,0.14);">
+      <a href="{{ prev.href }}" style="display: flex; flex-direction: column; gap: 8px; padding: clamp(26px, 4vw, 48px) clamp(20px, 5vw, 64px); text-decoration: none; color: #FFFFFF; border-bottom: 1px solid rgba(255,255,255,0.14); transition: background 350ms ease;" style-hover="background: #6E1535; color: #FFFFFF;">
+        <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #E8A9BD;">← Previous · {{ prev.letter }}</span>
+        <span style="font-size: clamp(20px, 2.2vw, 28px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.15;">{{ prev.title }}</span>
+      </a>
+      <a href="{{ next.href }}" style="display: flex; flex-direction: column; gap: 8px; align-items: flex-end; text-align: right; padding: clamp(26px, 4vw, 48px) clamp(20px, 5vw, 64px); text-decoration: none; color: #FFFFFF; border-bottom: 1px solid rgba(255,255,255,0.14); transition: background 350ms ease;" style-hover="background: #6E1535; color: #FFFFFF;">
+        <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #E8A9BD;">Next · {{ next.letter }} →</span>
+        <span style="font-size: clamp(20px, 2.2vw, 28px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.15;">{{ next.title }}</span>
+      </a>
+    </nav>
+    </sc-if>
+
+    <footer>
+      <div style="max-width: 1280px; margin: 0 auto; padding: 32px clamp(20px, 5vw, 64px) 40px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 16px 40px;">
+        <span style="display: flex; align-items: baseline; gap: 8px;"><span style="font-weight: 800; font-size: 22px; letter-spacing: -0.02em;">Hana Salah</span><span aria-hidden="true" style="width: 7px; height: 7px; background: #B66A82; border-radius: 50%;"></span></span>
+        <nav aria-label="Footer" style="display: flex; gap: 4px 24px; flex-wrap: wrap; font-size: 14.5px;">
+          <a href="index.html" style="color: rgba(255,255,255,0.85); text-decoration: none; display: inline-flex; align-items: center; min-height: 44px;" style-hover="color: #FFFFFF;">Home</a>
+          <a href="index.html#case-studies" style="color: rgba(255,255,255,0.85); text-decoration: none; display: inline-flex; align-items: center; min-height: 44px;" style-hover="color: #FFFFFF;">All work</a>
+          <sc-for list="{{ profiles }}" as="pr" hint-placeholder-count="2">
+            <a href="{{ pr.url }}" target="{{ pr.target }}" rel="noopener" style="color: rgba(255,255,255,0.85); text-decoration: none; display: inline-flex; align-items: center; min-height: 44px;" style-hover="color: #FFFFFF;">{{ pr.label }}</a>
+          </sc-for>
+        </nav>
+        <span style="font-size: 13px; color: rgba(255,255,255,0.65); flex-basis: 100%;">© 2026 Hana Salah</span>
+      </div>
+    </footer>
+  </section>
+</main>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;study&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;b2b-performance&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;b2b-performance&quot;,&quot;executive-reporting&quot;,&quot;nl-data-assistant&quot;,&quot;fitness-trainer&quot;,&quot;airbnb-insights&quot;,&quot;nba-prediction&quot;,&quot;fake-news&quot;,&quot;alzheimers-detection&quot;]}}">
+const LINKS = window.SITE_LINKS || {}; // shared config: see site-config.js
+const EMAIL = LINKS.email || 'hana.salah.m.nasr@gmail.com'; // fallback keeps the contact path alive if site-config.js fails to load
+const SVC = 'index.html#';
+const BUILDING = 'Currently building';
+// Each study: `shots` holds [imagePath, caption] pairs. Leave the path '' to hide it.
+// TODO(Hana): add sanitized screenshots/charts. Use dummy data only for corporate work.
+// Order = prev/next order and card letters: e& first (real corporate work), then BMW (public, inspectable), in-progress work, then the rest.
+const STUDIES = [
+  { id: 'b2b-performance', letter: 'A', category: 'Performance analytics', status: 'Sanitized corporate work',
+    title: 'B2B performance analytics system',
+    oneLine: 'Turning scattered B2B performance data into one KPI view management can work from.',
+    notice: 'Corporate work is described at a high level to protect employer data, internal systems and business logic.',
+    summary: {
+      problem: 'Performance data came from several sources in different shapes, so reporting was slow and segments were hard to compare.',
+      solution: 'A Python and SQL pipeline cleans and checks the data. KPI definitions are agreed. Dashboards and reports sit on top.',
+      result: 'Pipelines, KPI dashboards and recurring management reports I maintain in my current role.',
+      tech: 'Python, SQL, Excel, dashboards' },
+    context: ['At e& Egypt I work on B2B performance. I track KPIs across segments, prepare the data, build dashboards and produce management reports.'],
+    problem: ['Each source had its own format and its own idea of what a number meant. Before any dashboard could help, the data and the definitions had to be consistent.'],
+    data: ['Several operational extracts covering B2B sales and performance. Sources, volumes and fields are confidential.'],
+    approach: ['I started from the decisions management needed to make. I agreed on the KPIs that support them, then worked back to the data. Validation sits close to the source, so a bad row gets caught before it reaches a dashboard.', 'Extraction and transformation are in Python and SQL, with reusable functions for the KPI calculations that repeat every cycle.'],
+    arch: [['Source extracts', 'Operational data, several formats'], ['ETL', 'Clean, standardise, validate'], ['Analytical tables', 'Consistent, KPI-ready'], ['KPI layer', 'Definitions, segments, trends'], ['Dashboards & reports', 'Management view']],
+    tools: ['Python', 'SQL', 'Excel', 'Dashboards'],
+    implementation: ['Mapped recurring reporting needs to a set of KPI definitions.', 'Wrote cleaning and transformation steps for each source.', 'Added validation checks on key fields and totals.', 'Built dashboards covering several KPIs and segments.'],
+    challenges: ['Getting different teams to agree on what a KPI means.', 'Keeping recurring pipelines stable when input files change.', 'Showing many KPIs without burying the important ones.'],
+    outcome: ['A maintained pipeline feeding KPI dashboards and recurring management reports.'],
+    shots: [],
+    ctaTitle: 'Send me your reporting or KPI problem.', service: 'svc-kpi-dashboards', serviceLabel: 'KPI dashboards and performance reporting' },
+
+  { id: 'bmw-sales-analytics', letter: 'B', category: 'Sales analytics · public data', status: 'Independent project',
+    title: 'BMW Sales & Performance Analytics',
+    oneLine: 'From public corporate reports to a validated analytical system.',
+    intro: 'I built a data pipeline and a dashboard from official BMW Group public reports. They cover vehicle performance, electrification, market context and financial results.',
+    notice: 'Independent educational/portfolio project using publicly available BMW Group reporting information. Not affiliated with or endorsed by BMW Group.',
+    links: [
+      ['Live dashboard', LINKS.bmwDashboard, 'Live dashboard on Streamlit Community Cloud (opens in a new tab)', true],
+      ['View code', LINKS.bmwGithub, 'View code on GitHub (opens in a new tab)', false],
+    ],
+    metaDescription: 'Case study: a data pipeline and dashboard built from official BMW Group public reports. Independent portfolio project, not affiliated with BMW Group.',
+    summary: {
+      problem: 'BMW Group public reporting is spread across PDF reports, periods and data scopes.',
+      solution: 'A pipeline that extracts and checks the reports, stores them in SQL, and feeds an interactive dashboard.',
+      result: 'A validated pipeline (54 PASS, 1 WARN, 0 FAIL) and a deployed dashboard. Independent project: not built for BMW.',
+      tech: 'Python, Pandas, SQL, SQLite, Streamlit, Plotly' },
+    context: [], problem: [], data: [], approach: [],
+    arch: [['Official BMW Group reports', 'Public FY, H1 and Q2 reporting'], ['Targeted PDF extraction', 'Only the needed pages and tables'], ['Staging layer', 'Raw label, value and unit kept'], ['Pandas transformation', 'Units, periods and labels standardised'], ['Validation', 'Checks before and after loading'], ['SQLite database', 'Structured, queryable data'], ['SQL schema, views and analytics', 'Business logic kept in SQL'], ['Processed analytical datasets', 'Exports the dashboard reads'], ['Streamlit dashboard', 'Six active sections'], ['Private deployment-data bundle', 'Used by the live app, not in the public repo']],
+    tools: ['Python', 'Pandas', 'SQL', 'SQLite', 'Streamlit', 'Plotly', 'pdftotext', 'pathlib', 'pytest', 'Git', 'GitHub', 'Streamlit Community Cloud'],
+    implementation: [], challenges: [], outcome: [],
+    // [path, caption, object-fit, aspect-ratio]. Only files that exist are listed (a missing file would 404).
+    // Still needed: model performance, electrification, financials/methodology (suggested names: assets/images/bmw-model-performance.png, bmw-electrification.png, bmw-financials.png).
+    shots: [['assets/images/bmw-project.jpeg', 'Executive Overview: every figure carries an explicit scope label (BMW BRAND, BMW GROUP or AUTOMOTIVE SEGMENT), and the reporting period is selectable.', 'contain', '1600 / 787']],
+    spec: [
+      ['problem', 'Problem and data', [
+        ['p', 'V1 used synthetic Kaggle data that looked unreliable, so V2 uses official BMW Group public reports.'],
+        ['list', ['BMW brand, BMW Group and Automotive segment figures are kept separate. Model by country by revenue or profit is not created, because BMW does not publish it.', 'Growth is compared only between comparable periods: FY with FY, H1 with H1, Q2 with Q2. Missing data stays N/A or Not reported.', 'Analytical Revenue per Delivery starts at FY2022 because of a scope break. CO2e per vehicle stays out of the main trend because BMW restated it.']],
+      ], 'parts'],
+      ['built', 'What I built', ['Targeted PDF extraction', 'Staging that keeps the source report, page, table, raw label, value and unit', 'Pandas transformation of units, periods and labels', 'SQLite database', 'SQL schema, views and analytics, with the business logic kept in SQL'], 'listarch'],
+      ['checks', 'Checks and tests', [
+        ['cards', [
+          { h: '54 PASS / 1 WARN / 0 FAIL', p: 'Data validation. The one warning is the known CO2 methodology and restatement issue.' },
+          { h: '95 passed', p: 'Tests with the private local data' },
+          { h: '84 passed + 11 skipped', p: 'Tests in a clean public clone without the private real data. The skips are by design.' },
+        ]],
+        ['p', 'Validation covers duplicate keys, required fields, totals, shares, YoY recalculation and cross-report overlap. It caught a YoY percentage attached to the wrong year because of how the source table was oriented. The code ran without errors, but the result was wrong. I fixed it and added checks for that case.'],
+      ], 'parts'],
+      ['dashboard', 'Dashboard', [
+        ['p', 'The live dashboard has six sections:'],
+        ['list', ['Executive Overview', 'Model Performance', 'Electrification', 'BMW Group Market Context', 'Financials', 'Methodology']],
+        ['p', 'Scope labels are shown on screen: BMW BRAND, BMW GROUP and AUTOMOTIVE SEGMENT. MINI and Rolls-Royce are placeholders only.'],
+        ['p', 'The public GitHub repository has code, documentation and tests only. The live app uses a private data bundle.'],
+        ['links', 'bmw'],
+      ], 'parts+shots'],
+      ['tools', 'Tools', [1], 'tools'],
+    ],
+    ctaTitle: 'Send me your scattered reporting data.', service: 'svc-kpi-dashboards', serviceLabel: 'KPI dashboards and performance reporting' },
+
+  { id: 'executive-reporting', letter: 'C', category: 'Automation', status: BUILDING,
+    title: 'Automated executive reporting',
+    oneLine: 'A monthly executive report that builds and sends itself, from the database to the inbox.',
+    notice: 'Still being built. This page shows the design and where it’s heading, not a finished system.',
+    summary: {
+      problem: 'Executive reports often get rebuilt by hand every month: export, calculate, format, email.',
+      solution: 'A Python job pulls the data with SQL and calculates KPIs and month-over-month changes. It renders an HTML/PDF digest and emails it on a schedule.',
+      result: 'In progress. I’ll update this page as each stage is finished.',
+      tech: 'Python, SQL, Pandas, HTML templates, PDF, email' },
+    context: ['A personal build that takes the reporting patterns I use at work and automates the whole chain.'],
+    problem: ['Manual reporting is slow, easy to get wrong, and the same work comes back every month.'],
+    data: ['A sample database with performance-style data.'],
+    approach: ['The goal is to automate everything, not just the calculations, so the report arrives without anyone opening a spreadsheet. SQL handles extraction, Pandas handles the KPI and month-over-month logic, and a template renders the digest.'],
+    arch: [['Database', 'Source tables'], ['Python', 'Extract & transform'], ['KPI calculations', 'Core metrics'], ['MoM analysis', 'Changes & trends'], ['HTML/PDF digest', 'Formatted report'], ['Email', 'Scheduled delivery']],
+    tools: ['Python', 'SQL', 'Pandas', 'HTML templates', 'PDF generation', 'Email automation'],
+    implementation: [],
+    challenges: ['Handling late or missing data without sending a broken report.', 'Keeping the digest readable in five minutes.'],
+    outcome: [],
+    shots: [['', 'Digest email preview'], ['', 'PDF report page']],
+    ctaTitle: 'Send me your monthly reporting task.', service: 'svc-automation', serviceLabel: 'Automate recurring reports and tasks' },
+
+  { id: 'nl-data-assistant', letter: 'D', category: 'LLM application', status: BUILDING,
+    title: 'Natural-language data assistant',
+    oneLine: 'Managers ask business questions in plain English and get answers from the database, without writing SQL.',
+    notice: 'Still being built. It’s part of my move into AI engineering, shown here to document the approach.',
+    summary: {
+      problem: 'Managers wait on analysts for simple data questions because they can’t write SQL.',
+      solution: 'A Streamlit chat app where an LLM drafts SQL from the question and the schema. The app validates the query and runs it with read-only access.',
+      result: 'Prototype in progress.',
+      tech: 'Python, LangChain, LLM, Streamlit, SQL' },
+    context: ['This combines LLMs with the SQL and data work I already do every day.'],
+    problem: ['Routine questions like “how did segment X do last month?” take an analyst’s time and make the manager wait.'],
+    data: ['A sample relational database.'],
+    approach: ['The LLM generates the SQL, but the application controls what can actually run. Queries go through validation and execute on a read-only connection, so a bad or unsafe query can’t change anything.', 'LangChain handles the prompt, schema context and model call. Streamlit is the interface.'],
+    arch: [['Question', 'Plain English'], ['Streamlit UI', 'Chat interface'], ['LLM', 'Question + schema context'], ['Text-to-SQL', 'Draft query'], ['Validation', 'Checks, read-only run'], ['Answer', 'Result in plain terms']],
+    tools: ['Python', 'LangChain', 'LLM', 'Streamlit', 'SQL'],
+    implementation: [],
+    challenges: ['Stopping wrong or unsafe queries before they run.', 'Handling vague business language like “recently” or “top customers”.'],
+    outcome: [],
+    shots: [['', 'Question and answer view'], ['', 'Generated SQL and validation']],
+    ctaTitle: 'Send me your data questions.', service: 'ai-automation', serviceLabel: 'Small AI pilots' },
+
+  { id: 'airbnb-insights', letter: 'E', category: 'Business analytics', status: '',
+    title: 'Airbnb market insights',
+    oneLine: 'What drives price, occupancy and revenue in a short-term rental market, and where demand sits on the map.',
+    summary: {
+      problem: 'Hosts and investors need to know what drives price and occupancy, and which areas are in demand.',
+      solution: 'Cleaning and feature building in Python, then exploratory and geospatial analysis built around a few business questions.',
+      result: 'Findings and visuals on pricing, demand, host performance and geography.',
+      tech: 'Python, Pandas, Matplotlib, Seaborn, Tableau' },
+    context: ['An analytics project using public listing data to understand how a rental market behaves.'],
+    problem: ['Pricing and location decisions directly set revenue for hosts and returns for investors.'],
+    data: ['Public Airbnb listing, calendar and review data.'],
+    approach: ['I framed the analysis around a few questions (where, how much, how often booked) instead of describing every column. Occupancy and revenue were estimated from calendar data, then compared by area, property type and host.'],
+    arch: [['Listing data', 'Listings, calendar, reviews'], ['Cleaning', 'Prices, gaps, outliers'], ['Features', 'Occupancy, revenue estimates'], ['Analysis', 'Pricing, demand, hosts, geography'], ['Story', 'Charts & recommendations']],
+    tools: ['Python', 'Pandas', 'Matplotlib', 'Seaborn', 'Tableau', 'Geospatial analysis'],
+    implementation: ['Cleaned price and availability fields.', 'Estimated occupancy and revenue.', 'Analysed pricing by area and property type.', 'Compared host performance.', 'Mapped demand geographically.'],
+    challenges: ['Estimating occupancy from incomplete calendar data.', 'Keeping the story focused on decisions.'],
+    outcome: ['A set of findings and charts on pricing, demand, host performance and geography.'],
+    shots: [['', 'Geospatial demand map'], ['', 'Pricing analysis']],
+    ctaTitle: 'Send me your market data.', service: 'svc-kpi-dashboards', serviceLabel: 'KPI dashboards and performance reporting' },
+
+  { id: 'nba-prediction', letter: 'F', category: 'Predictive modelling', status: '',
+    title: 'NBA player performance prediction',
+    oneLine: 'A regression workflow on about 50,000 rows of player data.',
+    metric: { value: '+10%', label: 'prediction accuracy vs baseline', measuredOn: '' },
+    summary: {
+      problem: 'Predict player performance from historical stats more accurately than a simple baseline.',
+      solution: 'Cleaning, feature engineering and a tuned Ridge Regression model, evaluated against the baseline.',
+      result: 'A Ridge Regression model evaluated against a baseline.',
+      tech: 'Python, Pandas, NumPy, scikit-learn' },
+    context: ['A predictive modelling project on historical basketball statistics. The same workflow applies to sales, demand or customer-value forecasting.'],
+    problem: ['Lots of correlated stats make ordinary regression unstable and hard to trust.'],
+    data: ['About 50,000 rows of player statistics.'],
+    approach: ['Ridge regularisation handles correlated features while keeping the model interpretable. I scaled the data, built derived features, tuned the regularisation strength and compared against the baseline.'],
+    arch: [['Player stats', '~50k rows'], ['Preprocessing', 'Clean, scale, encode'], ['Features', 'Derived performance stats'], ['Ridge Regression', 'Regularised model'], ['Evaluation', 'Against the baseline']],
+    tools: ['Python', 'Pandas', 'NumPy', 'scikit-learn', 'Ridge Regression'],
+    implementation: ['Cleaned and scaled the dataset.', 'Built features from raw statistics.', 'Tuned the regularisation strength.', 'Evaluated against the baseline.'],
+    challenges: ['Highly correlated features.'],
+    outcome: ['A validated regression model and a reproducible workflow.'],
+    shots: [
+    ['assets/images/nba-prediction.png', 'Prediction analysis output'],
+    ['assets/images/nba-output.png', 'Model output and evaluation']
+    ],    
+    ctaTitle: 'Send me your historical data.', service: 'svc-prediction', serviceLabel: 'Prediction and classification models' },
+
+  { id: 'fitness-trainer', letter: 'G', category: 'Computer vision + ML', status: '',
+    title: 'Real-time fitness trainer',
+    metric: { value: '98.2%', label: 'accuracy with KNN', measuredOn: '' },
+    oneLine: 'Live pose detection on 33 body keypoints, feeding a classifier and personalised exercise recommendations.',
+    summary: {
+      problem: 'People training alone get no feedback on form, and generic programmes ignore individual needs.',
+      solution: 'MediaPipe extracts 33 keypoints per frame, features are built from joint positions, and a KNN classifier recognises the pose.',
+      result: 'A KNN classifier running in real time.',
+      tech: 'Python, MediaPipe, scikit-learn, KNN' },
+    context: ['A project combining computer vision with classical machine learning to give live feedback during exercise.'],
+    problem: ['Bad form cuts results and raises injury risk. Live feedback makes some of a coach’s guidance available without a coach.'],
+    data: ['Live camera frames, turned into 33 body keypoints per frame with MediaPipe Pose.'],
+    approach: ['Pose landmarks shrink each frame to a few numbers. That lets a light model like KNN classify in real time without a heavy network. I engineered features from landmark positions and fed the predictions into a recommendation step.'],
+    arch: [['Camera', 'Live video frames'], ['MediaPipe Pose', '33 keypoints per frame'], ['Features', 'Joint positions & angles'], ['KNN classifier', 'Pose / exercise state'], ['Recommendations', 'Personalised feedback']],
+    tools: ['Python', 'MediaPipe', 'scikit-learn', 'KNN'],
+    implementation: ['Captured and processed frames in real time.', 'Extracted 33 keypoints per frame.', 'Built features from landmark positions.', 'Trained and evaluated a KNN classifier.', 'Connected predictions to the recommendation step.'],
+    challenges: ['Keeping latency low enough for live feedback.', 'Coping with different camera angles and lighting.'],
+    outcome: ['A working real-time app with pose recognition and personalised recommendations.'],
+    shots: [ ['assets/images/fitness-trainer-2.jpg', 'Live pose detection with keypoints'],['assets/images/fitness-trainer-1.jpg', 'Recommendation output']],
+    ctaTitle: 'Send me your ML or computer vision idea.', service: 'svc-prediction', serviceLabel: 'Prediction and classification models' },
+
+  { id: 'fake-news', letter: 'H', category: 'Multimodal deep learning', status: '',
+    title: 'Multimodal fake news detection',
+    metric: { value: '85%', label: 'accuracy', measuredOn: '' },
+    oneLine: 'Classifying misleading news posts by modelling the text and the image together, with CLIP and ViLT.',
+    summary: {
+      problem: 'Misleading posts often pair a real image with a false caption. Text-only models miss that.',
+      solution: 'CLIP and ViLT as multimodal encoders with a classification head, compared on held-out data.',
+      result: 'CLIP and ViLT compared on held-out data.',
+      tech: 'Python, PyTorch, CLIP, ViLT' },
+    context: ['A deep learning research project on misinformation.'],
+    problem: ['Multimodal misinformation spreads fast and is hard to catch when you only look at one signal.'],
+    data: ['A labelled dataset of news posts, each with text and an image.'],
+    approach: ['Vision-language models learn joint representations of text and images, so they can pick up when the two don’t match. I extracted embeddings with CLIP and ViLT, trained classification layers on top and compared the two.'],
+    arch: [['Post', 'Text + image'], ['Preprocessing', 'Tokenise, resize, normalise'], ['CLIP / ViLT', 'Joint embeddings'], ['Classifier head', 'Real vs fake'], ['Evaluation', 'Accuracy & errors']],
+    tools: ['Python', 'PyTorch', 'CLIP', 'ViLT'],
+    implementation: ['Prepared text and image inputs.', 'Extracted joint representations with CLIP and ViLT.', 'Trained classification layers.', 'Evaluated and compared the two approaches.'],
+    challenges: ['Compute limits with large pre-trained models.'],
+    outcome: ['A multimodal classification pipeline and a comparison of two vision-language models.'],
+    shots: [['', 'Example inputs and predictions'],['', 'Model comparison']],
+    ctaTitle: 'Send me your text or image data.', service: 'svc-prediction', serviceLabel: 'Prediction and classification models' },
+
+  { id: 'alzheimers-detection', letter: 'I', category: 'Healthcare ML · academic', status: '',
+    title: "Alzheimer's early detection",
+    oneLine: 'Classification models for early detection from clinical features.',
+    metric: { value: '85%', label: 'classification accuracy', measuredOn: '' },
+    summary: {
+      problem: 'Spot patterns linked to early-stage Alzheimer’s in clinical data.',
+      solution: 'Preprocessing and feature engineering, then SVM and Decision Tree classifiers compared on held-out data.',
+      result: 'SVM and Decision Tree models compared. Academic project, not a clinical tool.',
+      tech: 'Python, Pandas, scikit-learn' },
+    context: ['An academic machine learning project in a healthcare setting.'],
+    problem: ['Earlier identification supports earlier intervention, and in healthcare the model also has to be explainable.'],
+    data: ['A clinical dataset of patient features.'],
+    approach: ['I compared an SVM, for accuracy, with a Decision Tree, for interpretability. After handling missing values and scaling, I selected features and evaluated both models on held-out data.'],
+    arch: [['Clinical data', 'Patient features'], ['Preprocessing', 'Missing values, scaling'], ['Features', 'Selection & encoding'], ['SVM / Decision Tree', 'Classification'], ['Evaluation', 'Accuracy & comparison']],
+    tools: ['Python', 'Pandas', 'scikit-learn', 'SVM', 'Decision Tree'],
+    implementation: ['Handled missing values and scaling.', 'Selected and engineered features.', 'Trained SVM and Decision Tree models.', 'Compared performance.'],
+    challenges: ['Balancing accuracy with interpretability.'],
+    outcome: ['Two evaluated classification models and a comparison.'],
+    shots: [['', 'Confusion matrix'], ['', 'Decision tree visualisation']],
+    ctaTitle: 'Send me your classification problem.', service: 'svc-prediction', serviceLabel: 'Prediction and classification models' },
+];
+
+// Shown for an unknown ?id= (the template hides the summary, body and next-step blocks when `found` is false).
+const NOT_FOUND = { id: '', letter: '', category: 'Not found', status: '', title: 'Case study not found',
+  oneLine: 'I couldn’t find that case study. The link may be wrong or the page may have moved.',
+  summary: { problem: '', solution: '', result: '', tech: '' }, context: [], problem: [], data: [], approach: [], arch: [], tools: [],
+  implementation: [], challenges: [], outcome: [], shots: [], ctaTitle: '', service: '', serviceLabel: '' };
+
+class Component extends DCLogic {
+  state = { progress: 0, activeId: '', menuOpen: false, badShots: {}, copyNote: '', narrow: typeof window !== 'undefined' && window.innerWidth < 880 };
+  menuRef = React.createRef();
+  toggleRef = React.createRef();
+  // Close the mobile menu; `refocus` returns keyboard focus to the hamburger button (WCAG 2.4.3).
+  closeOrOpen = () => { if (this.state.menuOpen) this.closeMenu(true); else this.setState({ menuOpen: true }); };
+  closeMenu = refocus => { this.refocus = refocus === true; this.setState({ menuOpen: false }); };
+  componentDidMount() {
+    // Scroll work runs at most once per animation frame, and setState only fires when a value actually changed.
+    this.onScroll = () => {
+      if (this.raf) return;
+      this.raf = requestAnimationFrame(() => {
+        this.raf = 0;
+        const h = document.documentElement, max = h.scrollHeight - h.clientHeight;
+        let activeId = '';
+        this.sections.forEach(el => { if (el.getBoundingClientRect().top < 160) activeId = el.id; });
+        const progress = max > 0 ? Math.round(Math.min(100, (h.scrollTop / max) * 100) * 10) / 10 : 0;
+        if (progress !== this.state.progress || activeId !== this.state.activeId) this.setState({ progress, activeId });
+      });
+    };
+    this.onResize = () => { const narrow = window.innerWidth < 880; if (narrow !== this.state.narrow) this.setState({ narrow, menuOpen: false }); };
+    this.onKey = e => { if (e.key === 'Escape' && this.state.menuOpen) this.closeMenu(true); };
+    this.sections = document.querySelectorAll('article > section[id]'); // looked up once, not on every scroll
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    window.addEventListener('resize', this.onResize, { passive: true });
+    window.addEventListener('keydown', this.onKey);
+    const c = this.current();
+    document.title = c ? c.title + ' | Case study | Hana Salah' : 'Case study not found | Hana Salah';
+    if (c && c.metaDescription) {
+      // Optional per-study description (visible to crawlers that run JS; the static head keeps the generic one).
+      [['meta[name=description]', c.metaDescription], ['meta[property="og:description"]', c.metaDescription], ['meta[property="og:title"]', c.title + ' | Case study | Hana Salah']]
+        .forEach(([sel, v]) => { const m = document.querySelector(sel); m && m.setAttribute('content', v); });
+    }
+  }
+  componentDidUpdate() {
+    // support.js passes only prevProps here (not prevState), so remember the previous menu state ourselves.
+    const open = this.state.menuOpen, was = this.wasOpen;
+    this.wasOpen = open;
+    if (open && !was && this.menuRef.current) { const a = this.menuRef.current.querySelector('a'); a && a.focus(); }
+    if (!open && was && this.refocus) { this.refocus = false; setTimeout(() => this.toggleRef.current && this.toggleRef.current.focus({ preventScroll: true }), 0); } // after the browser's own hash-jump focus handling
+  }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScroll); cancelAnimationFrame(this.raf); window.removeEventListener('resize', this.onResize); window.removeEventListener('keydown', this.onKey);
+  }
+  current() {
+    const id = new URLSearchParams(window.location.search).get('id') || this.props.study || 'b2b-performance';
+    return STUDIES.find(s => s.id === id) || null;
+  }
+  renderVals() {
+    const { narrow, menuOpen, activeId, badShots } = this.state;
+    const study = this.current(), found = !!study;
+    const c = study || NOT_FOUND;
+    const idx = found ? STUDIES.indexOf(c) : 0;
+    const building = c.status === BUILDING;
+    const nav = s => ({ href: 'case-study.html?id=' + s.id, letter: s.letter, title: s.title });
+    const shots = c.shots.filter(s => s[0] && !badShots[s[0]]).map(s => ({ src: s[0], caption: s[1], fit: s[2] || 'cover', ratio: s[3] || '16 / 10',
+      onFail: () => this.setState(st => (st.badShots[s[0]] ? null : { badShots: { ...st.badShots, [s[0]]: true } })) }));
+    // ML numbers stay in the data (`metric`) but are only shown once `measuredOn` says what they were measured on.
+    const mv = c.metric && c.metric.measuredOn ? c.metric : null;
+    const mtext = mv ? mv.value + ' ' + mv.label + ' (measured on ' + mv.measuredOn + ').' : '';
+    const links = (c.links || []).filter(l => l[1]).map(l => ({ label: l[0], href: l[1], aria: l[2], bg: l[3] ? '#FFFFFF' : 'transparent', fg: l[3] ? '#6E1535' : '#FFFFFF', border: l[3] ? '#FFFFFF' : 'rgba(255,255,255,0.7)', pbg: l[3] ? '#6E1535' : 'transparent', pfg: l[3] ? '#FFFFFF' : '#6E1535' }));
+    const pad = j => String(j + 1).padStart(2, '0');
+    // Rich studies (BMW) describe their sections in `spec` using "parts": paragraph, list, cards, links.
+    const mapPart = ([k, v]) => ({ isP: k === 'p', isList: k === 'list', isCards: k === 'cards', isLinks: k === 'links',
+      text: typeof v === 'string' ? v : '', list: k === 'list' ? v.map((t, j) => ({ n: pad(j), t })) : [], links,
+      cards: k === 'cards' ? v.map(cd => ({ h: cd.h, p: cd.p || '', items: cd.items || [], hasItems: !!(cd.items && cd.items.length) })) : [] });
+    // Standard layout: at most 5 sections (Problem, What I did, Result or Status, Screenshots, Tools). Empty ones hide themselves.
+    const problemParas = [[...c.context, ...c.problem].join(' '), ...c.data].filter(Boolean);
+    const didItems = [...c.approach, ...c.implementation, ...c.challenges.map(t => 'Challenge: ' + t)];
+    const resultItems = c.outcome.length ? c.outcome : (building ? [c.summary.result] : []);
+    const spec = (c.spec ? c.spec.map(sp => sp[3] === 'parts+shots' ? sp : sp) : [
+      ['problem', 'Problem', problemParas],
+      ['did', 'What I did', didItems, 'listarch'],
+      ['outcome', building ? 'Status' : 'Result', mv ? [...resultItems, mtext] : resultItems, 'list'],
+      ['screens', 'Screenshots', shots, 'shots'],
+      ['tools', 'Tools', c.tools, 'tools'],
+    ]).filter(s => (s[2] && s[2].length) || s[3] === 'listarch' || s[3] === 'parts+shots');
+    const blocks = spec.map((s, i) => ({
+      id: s[0], hid: s[0] + '-h', num: String(i + 1).padStart(2, '0'), title: s[1],
+      paras: !s[3] ? s[2] : [], isBody: !s[3],
+      hasList: (s[3] === 'list' || s[3] === 'listarch') && s[2].length > 0, list: (s[3] === 'list' || s[3] === 'listarch') ? s[2].map((t, j) => ({ n: String(j + 1).padStart(2, '0'), t })) : [],
+      isArch: s[3] === 'listarch', isTools: s[3] === 'tools', isShots: s[3] === 'shots' || s[3] === 'parts+shots',
+      hasParts: s[3] === 'parts' || s[3] === 'parts+shots', parts: (s[3] === 'parts' || s[3] === 'parts+shots') ? s[2].map(mapPart) : [],
+    }));
+    const last = c.arch.length - 1;
+    const profiles = [['Email', 'mailto:' + EMAIL], ['LinkedIn', LINKS.linkedin], ['Upwork', LINKS.upwork], ['Mostaql', LINKS.mostaql], ['GitHub', LINKS.github]]
+      .filter(p => p[1] && p[1] !== 'mailto:').map(p => ({ label: p[0], url: p[1], target: p[1].startsWith('mailto:') ? undefined : '_blank' }));
+    const archCols = narrow ? 'minmax(0, 1fr)' : 'repeat(auto-fit, minmax(min(100%, 190px), 1fr))';
+    return {
+      wide: !narrow, narrow, menuOpen, menuRef: this.menuRef, found,
+      crossLink: c.id === 'b2b-performance' ? (LINKS.bmwCaseStudy || '') : '',
+      navLinks: [['All work', 'index.html#case-studies'], ['Services', 'index.html#services'], ['About', 'index.html#about'], ['Contact', 'index.html#contact']].map(l => ({ label: l[0], href: l[1] })),
+      menuExpanded: String(menuOpen), menuLabel: menuOpen ? 'Close menu' : 'Open menu',
+      bar1: menuOpen ? 'translateY(7px) rotate(45deg)' : 'none', bar2: menuOpen ? 0 : 1, bar3: menuOpen ? 'translateY(-7px) rotate(-45deg)' : 'none',
+      toggleRef: this.toggleRef, toggleMenu: () => this.closeOrOpen(), closeAndFocus: () => this.closeMenu(true),
+      // Focus left the open menu for somewhere else (not the hamburger): close it, but don't steal focus back.
+      menuBlur: e => { const n = e.relatedTarget; if (this.state.menuOpen && !(n && (e.currentTarget.contains(n) || n === this.toggleRef.current))) this.closeMenu(false); },
+      menuKey: e => { if (e.key === 'Escape') this.closeMenu(true); },
+      c: { ...c, notice: c.notice || '', intro: c.intro || '', serviceHref: SVC + c.service }, heroLinks: links,
+      summary: [['Problem', c.summary.problem], ['Solution', c.summary.solution], ['Result', c.summary.result + (mv ? ' ' + mtext : '')], ['Tech', c.summary.tech]]
+        .map((s, i) => ({ k: s[0], v: s[1], line: i === 2 ? '#6E1535' : '#D9CFD1' })),
+      blocks,
+      toc: blocks.map(b => { const on = b.id === activeId; return { href: '#' + b.id, num: b.num, title: b.title, current: on ? 'true' : undefined, color: on ? '#6E1535' : '#3E373A', weight: on ? 700 : 500 }; }),
+      archCols, layoutCols: narrow ? 'minmax(0, 1fr)' : '220px minmax(0, 1fr)',
+      arch: c.arch.map((a, i) => {
+        const planned = building && i >= c.arch.length - 3, end = i === last && !building;
+        return { num: String(i + 1).padStart(2, '0'), name: a[0], desc: a[1], planned, arrow: i < last ? (narrow ? '↓' : '→') : '', border: planned ? 'dashed' : 'solid', lineColor: end ? '#6E1535' : (planned ? '#B66A82' : '#D9CFD1'),
+          bg: end ? '#6E1535' : '#FFFFFF', fg: end ? '#FFFFFF' : '#111111' };
+      }),
+      archCaption: building ? 'Dashed stages marked “planned” are still in development.' : 'Simplified architecture, in order.',
+      shots, profiles,
+      progress: this.state.progress + '%',
+      prev: nav(STUDIES[(idx - 1 + STUDIES.length) % STUDIES.length]),
+      next: nav(STUDIES[(idx + 1) % STUDIES.length]),
+      email: EMAIL, mailtoHref: 'mailto:' + EMAIL, copyNote: this.state.copyNote,
+      copyEmail: () => {
+        const done = ok => this.setState({ copyNote: ok ? 'Email copied' : 'Couldn’t copy automatically. Please select the address above and copy it.' });
+        window.SITE_UTILS ? window.SITE_UTILS.copyText(EMAIL).then(done) : done(false);
+      },
+      mailto: 'mailto:' + EMAIL + '?subject=' + encodeURIComponent('Project enquiry: similar to ' + c.title),
+    };
+  }
+}
+</script>
+</body>
+</html>
